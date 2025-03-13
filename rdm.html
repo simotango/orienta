@@ -1,0 +1,619 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>ORIENTA RoadMapper</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
+    <style>
+        :root {
+            --primary: #8A2BE2;
+            --secondary: #4B0082;
+            --background: #1A1A1A;
+            --surface: #2D2D2D;
+            --text: #FFFFFF;
+            --accent: #FFD700;
+        }
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: 'Segoe UI', system-ui, sans-serif;
+        }
+
+        body {
+            background: var(--background);
+            color: var(--text);
+            line-height: 1.6;
+        }
+
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 2rem;
+        }
+
+        .header {
+            text-align: center;
+            padding: 3rem 0;
+            background: linear-gradient(135deg, var(--primary), var(--secondary));
+            border-radius: 0 0 2rem 2rem;
+            box-shadow: 0 4px 30px rgba(0, 0, 0, 0.1);
+        }
+        .header--logo { 
+    -webkit-box-align: center;
+    -webkit-align-items: center;
+    -ms-flex-align: center;
+    align-items: center;
+    text-decoration: none;
+    color: #fff
+}
+
+        .header__title {
+            font-size: 3rem;
+            font-weight: 700;
+            margin-bottom: 1rem;
+        }
+
+        .form-container {
+            background: var(--surface);
+            border-radius: 1.5rem;
+            padding: 2.5rem;
+            margin: 2rem 0;
+            box-shadow: 0 8px 32px rgba(0, 0, 0, 0.18);
+        }
+
+        .input-group {
+            margin-bottom: 1.5rem;
+        }
+
+        .input-label {
+            display: block;
+            margin-bottom: 0.8rem;
+            font-weight: 600;
+            color: var(--accent);
+        }
+
+        .goal-input {
+            width: 100%;
+            padding: 1.2rem;
+            border: 2px solid var(--primary);
+            border-radius: 1rem;
+            background: rgba(255, 255, 255, 0.05);
+            color: var(--text);
+            font-size: 1.1rem;
+            transition: all 0.3s ease;
+        }
+
+        .goal-input:focus {
+            outline: none;
+            border-color: var(--accent);
+            box-shadow: 0 0 15px rgba(138, 43, 226, 0.3);
+        }
+
+        .settings-toggle {
+            display: flex;
+            align-items: center;
+            gap: 0.8rem;
+            margin: 1.5rem 0;
+            color: var(--accent);
+            cursor: pointer;
+        }
+
+        .advanced-settings {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 1.5rem;
+            padding: 1.5rem;
+            background: rgba(0, 0, 0, 0.2);
+            border-radius: 1rem;
+            margin-top: 1.5rem;
+        }
+
+        .country-group {
+            display: grid;
+            gap: 1rem;
+            grid-template-columns: 1fr 1fr;
+        }
+
+        .radio-group {
+            display: flex;
+            gap: 1rem;
+            align-items: center;
+        }
+
+        .radio-label {
+            display: flex;
+            align-items: center;
+            gap: 0.5rem;
+            cursor: pointer;
+        }
+
+        .radio-input {
+            -webkit-appearance: none;
+            appearance: none;
+            width: 1.2em;
+            height: 1.2em;
+            border: 2px solid var(--primary);
+            border-radius: 50%;
+            position: relative;
+            cursor: pointer;
+        }
+
+        .radio-input:checked::before {
+            content: '';
+            position: absolute;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+            width: 0.6em;
+            height: 0.6em;
+            background: var(--accent);
+            border-radius: 50%;
+        }
+
+        .date-inputs {
+            display: grid;
+            gap: 1rem;
+        }
+
+        .select-level {
+            width: 100%;
+            padding: 0.8rem;
+            border: 2px solid var(--primary);
+            border-radius: 0.8rem;
+            background: rgba(255, 255, 255, 0.05);
+            color: var(--text);
+            cursor: pointer;
+        }
+
+        .generate-btn {
+            width: 100%;
+            padding: 1.2rem;
+            background: linear-gradient(135deg, var(--primary), var(--secondary));
+            border: none;
+            border-radius: 1rem;
+            color: white;
+            font-size: 1.1rem;
+            font-weight: 600;
+            cursor: pointer;
+            transition: transform 0.2s ease;
+        }
+
+        .generate-btn:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 5px 15px rgba(138, 43, 226, 0.4);
+        }
+
+        .roadmap-output {
+            display: none;
+            background: var(--surface);
+            border-radius: 1.5rem;
+            padding: 2rem;
+            margin-top: 2rem;
+            animation: fadeIn 0.5s ease;
+        }
+
+        .roadmap-title {
+            text-align: center;
+            margin-bottom: 2rem;
+            color: var(--accent);
+        }
+
+        .timeline {
+            position: relative;
+            padding: 2rem 0;
+        }
+
+        .timeline::before {
+            content: '';
+            position: absolute;
+            left: 50%;
+            top: 0;
+            bottom: 0;
+            width: 4px;
+            background: var(--primary);
+            transform: translateX(-50%);
+        }
+
+        .step-card {
+            position: relative;
+            width: 45%;
+            padding: 1.5rem;
+            background: rgba(255, 255, 255, 0.05);
+            border-radius: 1rem;
+            margin: 2rem 0;
+            opacity: 0;
+            transform: translateY(20px);
+            transition: all 0.5s ease;
+        }
+
+        .step-card:nth-child(odd) {
+            margin-left: auto;
+        }
+
+        .step-card.visible {
+            opacity: 1;
+            transform: translateY(0);
+        }
+
+        .step-number {
+            position: absolute;
+            top: -20px;
+            left: -20px;
+            width: 40px;
+            height: 40px;
+            background: var(--accent);
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-weight: 700;
+            color: var(--background);
+        }
+
+        .country-notes {
+            margin-top: 1rem;
+            padding: 1rem;
+            background: rgba(255, 255, 255, 0.05);
+            border-radius: 8px;
+        }
+
+        .country-notes h4 {
+            color: var(--accent);
+            margin-bottom: 0.5rem;
+        }
+
+        .country-notes p {
+            margin: 0.3rem 0;
+        }
+
+        .loader {
+            display: none;
+            text-align: center;
+            padding: 2rem;
+        }
+
+        .spinner {
+            width: 50px;
+            height: 50px;
+            border: 4px solid var(--primary);
+            border-top-color: var(--accent);
+            border-radius: 50%;
+            animation: spin 1s linear infinite;
+        }
+
+        @keyframes spin {
+            to { transform: rotate(360deg); }
+        }
+
+        @keyframes fadeIn {
+            from { opacity: 0; }
+            to { opacity: 1; }
+        }
+
+        @media (max-width: 768px) {
+            .container {
+                padding: 1rem;
+            }
+
+            .header__title {
+                font-size: 2rem;
+            }
+
+            .step-card {
+                width: 100%;
+                margin: 1rem 0 !important;
+            }
+
+            .timeline::before {
+                left: 20px;
+            }
+
+            .country-group {
+                grid-template-columns: 1fr;
+            }
+        }
+        .btn {
+      background: #3b82f6;
+      color: #fff;
+      border: none;
+      border-radius: 4px;
+      padding: 0.75em 1.5em;
+      font-size: 0.9rem;
+      cursor: pointer;
+      transition: background 0.2s ease;
+      margin-top: 1em;
+      margin-right: 0.5em;
+    }
+    .btn:hover { background: #2563eb; }
+    .btn:disabled { background: #9ca3af; cursor: not-allowed; }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <header class="header">
+          <a class="header--logo" href="index.html">
+            <img src="assets/img/logo-blanc-1024x428[1].webp" alt="RoadMapper" style="width: 67px; height: 58px;">
+            </a>
+          <h1 class="header__title">ORIENTA ROAD MAPPER</h1>
+          <h1>Create personalized international learning roadmaps , <br> We Recomend you to Take the test first to Know exactly your road map</h1>
+          <center><a  href="form.html"><button class="btn"> Take the Test </button></a></center>
+        </header>
+
+        <div class="form-container">
+            <div class="input-group">
+                <input type="text" 
+                       class="goal-input" 
+                       id="goal" 
+                       placeholder="Enter your learning/career goal..."
+                       required>
+            </div>
+
+            <div class="settings-toggle" id="toggle-settings">
+                <i class="fas fa-cog"></i>
+                <span>Advanced Settings</span>
+            </div>
+
+            <div class="advanced-settings" id="advanced-settings" style="display: none;">
+                <div class="input-group">
+                    <label class="input-label">Location Details</label>
+                    <div class="country-group">
+                        <input type="text" 
+                               class="goal-input" 
+                               id="current-country" 
+                               placeholder="Your current country"
+                               required>
+                        <input type="text" 
+                               class="goal-input" 
+                               id="target-country" 
+                               placeholder="Target study country"
+                               required>
+                    </div>
+                </div>
+
+                <div class="input-group">
+                    <label class="input-label">Resource Type</label>
+                    <div class="radio-group">
+                        <label class="radio-label">
+                            <input type="radio" 
+                                   class="radio-input" 
+                                   name="resource-type" 
+                                   value="free" 
+                                   checked>
+                            Free
+                        </label>
+                        <label class="radio-label">
+                            <input type="radio" 
+                                   class="radio-input" 
+                                   name="resource-type" 
+                                   value="paid">
+                            Paid
+                        </label>
+                        <label class="radio-label">
+                            <input type="radio" 
+                                   class="radio-input" 
+                                   name="resource-type" 
+                                   value="none">
+                            None
+                        </label>
+                    </div>
+                </div>
+
+                <div class="input-group">
+                    <label class="input-label">Skill Level</label>
+                    <select class="select-level" id="level">
+                        <option value="beginner">Beginner</option>
+                        <option value="intermediate">Intermediate</option>
+                        <option value="advanced">Advanced</option>
+                    </select>
+                </div>
+
+                <div class="input-group">
+                    <label class="input-label">Timeline</label>
+                    <div class="date-inputs">
+                        <input type="date" class="goal-input" id="start-date" required>
+                        <input type="date" class="goal-input" id="end-date" required>
+                    </div>
+                </div>
+            </div>
+
+            <button class="generate-btn" id="generate-roadmap">
+                Generate Global Roadmap
+            </button>
+        </div>
+
+        <div class="loader" id="loader">
+            <div class="spinner"></div>
+            <p>Building your roadmap...</p>
+        </div>
+
+        <div class="roadmap-output" id="roadmap-output">
+            <h2 class="roadmap-title">Your Custom Roadmap</h2>
+            <div class="timeline">
+                <div id="steps"></div>
+            </div>
+        </div>
+    </div>
+
+    <script>
+        document.addEventListener('DOMContentLoaded', () => {
+            const toggleSettings = document.getElementById('toggle-settings');
+            const advancedSettings = document.getElementById('advanced-settings');
+
+            // Toggle advanced settings
+            toggleSettings.addEventListener('click', () => {
+                const isVisible = advancedSettings.style.display === 'block';
+                advancedSettings.style.display = isVisible ? 'none' : 'block';
+                toggleSettings.querySelector('i').style.transform = isVisible ? 'rotate(0deg)' : 'rotate(180deg)';
+            });
+
+            // Generate roadmap handler
+            document.getElementById('generate-roadmap').addEventListener('click', async () => {
+                const goal = document.getElementById('goal').value;
+                const currentCountry = document.getElementById('current-country').value;
+                const targetCountry = document.getElementById('target-country').value;
+                const startDate = document.getElementById('start-date').value;
+                const endDate = document.getElementById('end-date').value;
+                const level = document.getElementById('level').value;
+                const resourceType = document.querySelector('input[name="resource-type"]:checked').value;
+                const loader = document.getElementById('loader');
+                const output = document.getElementById('roadmap-output');
+                const stepsContainer = document.getElementById('steps');
+
+                // Clear previous results
+                stepsContainer.innerHTML = '';
+                output.style.display = 'none';
+                loader.style.display = 'block';
+
+                try {
+                    // Validate inputs
+                    if (!goal.trim()) throw new Error('Please enter a goal');
+                    if (!currentCountry.trim() || !targetCountry.trim()) {
+                        throw new Error('Please provide both current and target countries');
+                    }
+                    if (new Date(startDate) >= new Date(endDate)) {
+                        throw new Error('End date must be after start date');
+                    }
+
+                    // Construct API prompt
+                    const prompt = `Create a detailed international roadmap for: "${goal}"
+                        Current Location: ${currentCountry}
+                        Target Country: ${targetCountry}
+                        Skill Level: ${level}
+                        Resource Type: ${resourceType}
+                        Timeline: ${startDate} to ${endDate}
+                        NOTE THAT IF IT S THE SAME COUTRY THE CURENT COUNTRY AND TARGET COUNTRY dont include
+                        - Local requirements from if needed ${currentCountry}
+                        - Immigration steps for if the country is not the same ${targetCountry}
+                        but if they are not the same 
+
+                        Include:
+                        - Immigration steps for if the country is not the same ${targetCountry}
+                        - Cultural adaptation tips
+                        - Local resources in both countries
+                        - Language preparation if needed
+                        - universities of the ${targetCountry}
+
+                        Format response as JSON array with steps containing:
+                        title, description, duration, resources, and country_specific_notes. and also university cursus that he should do 
+                        Example: [{
+                            "title": "Visa Preparation",
+                            "description": "Steps for obtaining student visa",
+                            "duration": "2 months",
+                            "resources": "https://example.com/visa-info",
+                            "country_specific_notes": {
+                                "${currentCountry}": "Document requirements",
+                                "${targetCountry}": "Financial proof needed"
+                            }
+                        }]`;
+
+                    // Make API request
+                    const url = `https://a.picoapps.xyz/ask-ai?prompt=${encodeURIComponent(prompt)}`;
+                    const response = await fetch(url);
+
+                    if (!response.ok) {
+                        throw new Error(`HTTP error! status: ${response.status}`);
+                    }
+
+                    const result = await response.json();
+                    const apiResponse = result.response;
+
+                    // Extract JSON from response
+                    const jsonMatch = apiResponse.match(/\[.*?\]/s);
+                    if (!jsonMatch) throw new Error('Invalid response format from API');
+                    
+                    const roadmapData = JSON.parse(jsonMatch[0]);
+                    
+                    // Validate response structure
+                    if (!Array.isArray(roadmapData)) throw new Error('Invalid roadmap format');
+                    if (roadmapData.some(step => !step.title || !step.description)) {
+                        throw new Error('Invalid step structure in response');
+                    }
+
+                    // Render results
+                    output.style.display = 'block';
+                    renderRoadmap(roadmapData);
+                    observeSteps();
+
+                } catch (error) {
+                    showError(error.message);
+                    console.error('Roadmap generation error:', error);
+                } finally {
+                    loader.style.display = 'none';
+                }
+            });
+
+            function renderRoadmap(data) {
+                const stepsHTML = data.map((step, index) => `
+                    <div class="step-card">
+                        <div class="step-number">${index + 1}</div>
+                        <h3>${step.title}</h3>
+                        <p>${step.description}</p>
+                        <div class="step-details">
+                            ${step.duration ? `<p><strong>Duration:</strong> ${step.duration}</p>` : ''}
+                            ${step.resources ? `<p><strong>Resources:</strong> ${formatResources(step.resources)}</p>` : ''}
+                            ${renderCountryNotes(step.country_specific_notes)}
+                        </div>
+                    </div>
+                `).join('');
+
+                document.getElementById('steps').innerHTML = stepsHTML;
+            }
+
+            function formatResources(resources) {
+                return resources.split(',')
+                    .map(res => {
+                        const cleanRes = res.trim();
+                        return cleanRes.startsWith('http') ? 
+                            `<a href="${cleanRes}" target="_blank" rel="noopener">${cleanRes}</a>` :
+                            cleanRes;
+                    })
+                    .join(', ');
+            }
+
+            function renderCountryNotes(notes) {
+                if (!notes || typeof notes !== 'object') return '';
+                return `
+                    <div class="country-notes">
+                        <h4>Country-Specific Requirements:</h4>
+                        ${Object.entries(notes).map(([country, note]) => `
+                            <p><strong>${country}:</strong> ${note}</p>
+                        `).join('')}
+                    </div>
+                `;
+            }
+
+            function observeSteps() {
+                const steps = document.querySelectorAll('.step-card');
+                const observer = new IntersectionObserver(entries => {
+                    entries.forEach(entry => {
+                        if (entry.isIntersecting) {
+                            entry.target.classList.add('visible');
+                        }
+                    });
+                }, { threshold: 0.1 });
+
+                steps.forEach(step => observer.observe(step));
+            }
+
+            function showError(message) {
+                const errorEl = document.createElement('div');
+                errorEl.style.position = 'fixed';
+                errorEl.style.bottom = '20px';
+                errorEl.style.left = '50%';
+                errorEl.style.transform = 'translateX(-50%)';
+                errorEl.style.padding = '1rem 2rem';
+                errorEl.style.background = '#e74c3c';
+                errorEl.style.color = 'white';
+                errorEl.style.borderRadius = '8px';
+                errorEl.style.zIndex = '1000';
+                errorEl.textContent = message;
+                document.body.appendChild(errorEl);
+                setTimeout(() => errorEl.remove(), 5000);
+            }
+        });
+    </script>
+</body>
+</html>

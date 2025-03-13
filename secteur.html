@@ -1,0 +1,2797 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>orienta Jobs</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css" />
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@mdi/font/css/materialdesignicons.min.css">
+    <meta name="author" content="Mounseflit">
+    <link rel="shortcut icon" type="x-icon" href="assets\img\logo-blanc-1024x428[1].webp">
+
+</head>
+
+<STyle>
+    @import url("https://fonts.googleapis.com/css2?family=Poppins:wght@400;600&display=swap");
+
+    * {
+        margin: 0;
+        padding: 0;
+        border: none;
+        outline: none;
+        box-sizing: border-box;
+        font-family: "Poppins", sans-serif;
+    }
+
+    body {
+        display: flex;
+    }
+    
+
+    .sidebar {
+        position: sticky;
+        top: 0;
+        left: 0px;
+        bottom: 0;
+        width: 110px;
+        height: 100vh;
+        padding: 0 1.7rem;
+        color: #fff;
+        overflow: hidden;
+        transform: all 0.5s linear;
+        background: #512da8;
+    }
+
+    .sidebar:hover {
+        width: 240px;
+        transform: 0.5s;
+    }
+
+    .logo {
+        height: 80px;
+        padding: 16px;
+    }
+
+    .menu {
+        height: 88%;
+        position: relative;
+        list-style: none;
+        padding: 0;
+    }
+
+    .menu li {
+        padding: 1rem;
+        margin: 8px 0;
+        border-radius: 8px;
+        transition: all 0.5s;
+    }
+
+    .menu li:hover,
+    .active {
+        font-weight: bolder;
+    }
+
+    .menu a {
+        color: #fff;
+        font-size: 14px;
+        text-decoration: none;
+        display: flex;
+        align-items: center;
+        gap: 1.5rem;
+    }
+
+    .menu a span {
+        overflow: hidden;
+    }
+
+    .menu a i {
+        font-size: 1.2rem;
+    }
+
+    .logout {
+        position: absolute;
+        bottom: 0;
+        left: 0;
+        width: 100%;
+    }
+
+    /* Main body section */
+    .main--content {
+
+        position: relative;
+        background: #ebe9e9;
+        width: 100%;
+        padding: 1rem;
+    }
+
+    .header--wrapper img {
+        width: auto;
+        height: auto;
+        cursor: pointer;
+        border-radius: 40%;
+    }
+
+    .header--wrapper {
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+        flex-wrap: wrap;
+        background: #fff;
+        border-radius: 10px;
+        padding: 10px 2rem;
+        margin-bottom: 1rem;
+
+    }
+
+    .header--title {
+        color: #512da8;
+    }
+
+    .user--info {
+        display: flex;
+        align-items: center;
+        gap: 1rem;
+    }
+
+    .searh--box {
+        background-color: rgb(237, 237, 237);
+        border-radius: 15px;
+        color: #512da8;
+        display: flex;
+        align-items: center;
+        gap: 5px;
+        padding: 4px 12px;
+    }
+
+    .searh--box input {
+        background-color: transparent;
+        padding: 10px;
+    }
+
+    .searh--box i {
+        font-size: 1.2rem;
+        cursor: pointer;
+        transition: all 0.5s ease-out;
+    }
+
+    .searh--box i:hover {
+        transform: scale(1.2);
+    }
+
+    .highlight {
+        background-color: yellow;
+        font-weight: bold;
+    }
+    .highlight {
+            background-color: yellow;
+            font-weight: bold;
+        }
+
+        .job-container {
+            border: 1px solid #ccc;
+            padding: 10px;
+            margin: 10px;
+            border-radius: 5px;
+        }
+
+        .job-icon {
+            font-size: 24px;
+            margin-right: 10px;
+        }
+
+        .job-title {
+            font-size: 18px;
+            font-weight: bold;
+        }
+
+        .job-description {
+            margin-top: 10px;
+        }
+
+        .softskills, .personnalites, .avantages, .inconvenients {
+            margin-top: 10px;
+        }
+
+
+       
+
+    .job-container {
+      display: flex;
+      flex-wrap: wrap;
+      justify-content: space-around;
+    }
+
+    .job-block {
+      width: 300px;
+      border: 1px solid #ddd;
+      background-color: #fff;
+      margin: 20px;
+      padding: 15px;
+      box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+      transition: transform 0.3s ease-in-out;
+    }
+
+    .job-block:hover {
+      transform: scale(1.05);
+    }
+
+    
+
+    .job-block>h2 {
+      font-size: 1.5em;
+      margin-bottom: 10px;
+      cursor: pointer;
+    }
+
+    .job-block>p {
+      margin: 10px 0;
+    }
+
+    .job-block>ul {
+      margin: 0;
+      padding: 0;
+      list-style: none;
+      display: none; /* Hide the list by default */
+    }
+
+    .job-block>ul>li {
+      margin-bottom: 5px;
+    }
+
+    .label1 {
+      font-weight: bold;
+      margin-bottom: 5px;
+      display: none;
+    }
+
+    .label2 {
+      font-weight: bold;
+      margin-bottom: 5px;
+      display: none;
+    }
+    .label3 {
+      font-weight: bold;
+      margin-bottom: 5px;
+      display: none;
+    }
+    .label4 {
+      font-weight: bold;
+      margin-bottom: 5px;
+      display: none;
+    }
+
+    .job-block>h2 {
+      font-size: 1.5em;
+      margin-bottom: 10px;
+    }
+
+    .job-block>p {
+      margin: 10px 0;
+    }
+
+    .job-block>ul {
+      margin: 0;
+      padding: 0;
+      list-style: none;
+    }
+
+    .job-block>ul>li {
+      margin-bottom: 5px;
+    }
+
+   
+</STyle>
+
+
+<body>
+    <div class="sidebar" id="searchableContent">
+        <br>
+        <ul class="menu">
+            <li>
+                <a href="index.html">
+                    <i class="fas fa-home"></i>
+                    <span>Home</span>
+                </a>
+            </li>
+           
+
+            <li>
+                <a href="mailto: myway.core.team@gmail.com">
+                    <i class="fas fa-envelope"></i>
+                    <span>Mails</span>
+                </a>
+            </li>
+
+            <li>
+                <a href="secteur.html" class="active">
+                    <i class="fas fa-suitcase"></i>
+                    <span>Jobs</span>
+                </a>
+            </li>
+
+            <li>
+                <a href="filier.html">
+                    <i class="fas fa-database"></i>
+                    <span>Majors</span>
+                </a>
+            </li>
+
+            <li>
+                <a href="ecole.html">
+                    <i class="fas fa-graduation-cap"></i>
+                    <span>Schools</span>
+                </a>
+            </li>
+            <li>
+                <a href="profil.html">
+                    <i class="fas fa-question"></i>
+                    <span>Q&A</span>
+                </a>
+            </li>
+
+            
+
+
+            
+            <li class="logout">
+                <a href="login.html">
+                    <i class="fas fa-sign-out"></i>
+                    <span>log out </span>
+                </a>
+            </li>
+        </ul>
+    </div>
+    <div class="main--content">
+        <div class="header--wrapper">
+            <div class="header--title">
+                <span></span>
+                <h2>Jobs - Dashboard</h2>
+            </div>
+            <div class="user--info">
+                <div class="searh--box">
+                    <i class="fa-solid fa-search" onclick="search()"> </i>
+                    <input type="text" placeholder="Search" id="searchInput" />
+                </div>
+                
+            </div>
+
+        </div>
+        <div class="card--container">
+            <h3 class="main--title"></h3>
+            <div class="card--wrapper">
+                <div class="payment--card">
+                    <div class="card--header">
+                        <div class="amount">
+                            <div class="job-container" id="jobsContainer"></div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+ 
+</body>
+
+
+<script>
+
+  // Your JSON data
+  const jobData = [
+    {
+        "id": 35,
+        "titre": "Comptabilité, Audit & Finance",
+        "description": "Gestion comptable, Audit financier et planification financière",
+        "salaire": "3000 - 6000",
+        "metiers": [
+            {
+                "id": 6704,
+                "titre": "Comptable",
+                "description": "Un comptable est chargé de tenir à jour les finances d'une entreprise. Cela inclut la préparation des états financiers, l'audit des livres de l'entreprise et la conformité aux lois fiscales. Ils s'assurent que les transactions financières sont précises et enregistrées correctement."
+            },
+            {
+                "id": 6705,
+                "titre": "Auditeur",
+                "description": "Son rôle est d'examiner les comptes d'une entreprise pour s'assurer qu'ils sont exacts et conformes aux lois et réglementations. Il travaille souvent pour un cabinet d'audit indépendant ou pour le gouvernement."
+            },
+            {
+                "id": 6706,
+                "titre": "Analyste Financier",
+                "description": "L'analyste financier évalue les données financières pour aider l'entreprise à prendre des décisions d'investissement. Ils peuvent analyser les tendances du marché, les coûts de production et les prévisions de ventes pour recommander des stratégies financières."
+            },
+            {
+                "id": 6707,
+                "titre": "Gestionnaire de portefeuille",
+                "description": "Ce professionnel est responsable de la gestion de l'argent investi par les autres. Il doit être capable de suivre les tendances du marché, de comprendre les risques et de prendre des décisions éclairées sur où et quand investir."
+            },
+            {
+                "id": 6708,
+                "titre": "Conseiller financier",
+                "description": "Ce professionnel aide les gens à gérer leur argent. Il peut fournir des conseils sur des sujets tels que les prêts hypothécaires, les investissements, les économies, les taxes ou la planification de la retraite. Il doit être capable de comprendre les besoins financiers individuels de chaque client et de proposer des solutions adaptées."
+            },
+            {
+                "id": 6793,
+                "titre": "Directeur Financier",
+                "description": "Le directeur financier supervise tous les aspects financiers de l'entreprise. Ils sont responsables de la planification financière, de la gestion des risques et de la préparation des états financiers. Ils jouent un rôle clé dans les décisions stratégiques de l'entreprise."
+            },
+            {
+                "id": 6794,
+                "titre": "Contrôleur de Gestion",
+                "description": "Le contrôleur de gestion travaille principalement sur l'optimisation des performances financières de l'entreprise. Ils préparent des budgets, suivent les dépenses et les revenus, et analysent les écarts par rapport aux prévisions. Ils jouent un rôle important dans la planification financière et la stratégie de l'entreprise."
+            },
+            {
+                "id": 6873,
+                "titre": "Auditeur Interne",
+                "description": "L'auditeur interne vérifie la précision des informations financières de l'entreprise et s'assure que les procédures internes sont respectées. Ils peuvent également proposer des améliorations pour aider l'entreprise à fonctionner plus efficacement et à réduire les risques financiers."
+            }
+        ],
+        "softskills": [
+            "Résolution de problèmes",
+            "Gestion du temps",
+            "Pensée critique",
+            "Prise de décision"
+        ],
+        "personnalites": [
+            "Sérieux",
+            "Organisé",
+            "Responsable"
+        ],
+        "avantages": [
+            "Rôles bien structurés",
+            "Stabilité professionnelle",
+            "Connaissance approfondie des réglementations financières",
+            "Possibilité d'évoluer vers des rôles consultatifs",
+            "Reconnaissance professionnelle"
+        ],
+        "inconvenients": [
+            "Responsabilité en cas d'erreurs",
+            "Régulation et conformité",
+            "Pression des délais",
+            "Évolution constante des normes",
+            "Risque de fraudes"
+        ],
+        "icon": "mdi mdi-calculator",
+        "recommandation": 71,
+        "isDone": false,
+        "isFav": false,
+        "compatibilite": 0
+    },
+    {
+        "id": 29,
+        "titre": "Achats & Approvisionnement",
+        "description": "Gestion des achats et de l'approvisionnement en matières premières et produits pour les entreprises",
+        "salaire": "3000 - 8000",
+        "metiers": [
+            {
+                "id": 6674,
+                "titre": "Acheteur",
+                "description": "L'acheteur est responsable de l'acquisition de produits ou de services pour une entreprise. Il doit négocier les meilleurs prix et conditions pour assurer la rentabilité de son entreprise. Ils doivent également surveiller les tendances du marché et les comportements des consommateurs pour choisir les produits qui seront achetés."
+            },
+            {
+                "id": 6675,
+                "titre": "Gestionnaire de la chaîne d'approvisionnement",
+                "description": "Ce professionnel coordonne toutes les activités liées à la chaîne d'approvisionnement, de l'achat initial des matériaux à la livraison du produit final. Ils travaillent sur l'amélioration des processus et des systèmes pour rendre la chaîne d'approvisionnement plus efficace et rentable."
+            },
+            {
+                "id": 6676,
+                "titre": "Coordinateur des achats",
+                "description": "Le coordinateur des achats aide l'équipe des achats en gérant les bons de commande, en communiquant avec les fournisseurs et en s'assurant que les délais de livraison sont respectés. Ils jouent un rôle clé dans le maintien de bonnes relations avec les fournisseurs."
+            },
+            {
+                "id": 6677,
+                "titre": "Analyste des achats",
+                "description": "Il utilise des données pour aider à prendre des décisions d'achat. Cela peut impliquer d'analyser les tendances du marché, de comparer les prix des fournisseurs et d'évaluer la performance des fournisseurs."
+            },
+            {
+                "id": 6678,
+                "titre": "Responsable des approvisionnements",
+                "description": "Il supervise l'achat de biens et de services nécessaires à l'exploitation de l'entreprise. Il travaille à la fois avec les fournisseurs et les différents départements de l'entreprise pour s'assurer que tous les besoins sont satisfaits de manière efficace et rentable."
+            },
+            {
+                "id": 6774,
+                "titre": "Gestionnaire de la chaîne logistique",
+                "description": "Il supervise l'ensemble du processus d'approvisionnement, de la commande des produits à leur livraison. Il doit s'assurer que les produits sont livrés efficacement et à temps, tout en gérant les coûts."
+            },
+            {
+                "id": 6775,
+                "titre": "Directeur des achats",
+                "description": "Il est responsable de la stratégie d'achat d'une entreprise. Cela implique de prendre des décisions sur les produits ou services à acheter, les fournisseurs à utiliser et comment obtenir le meilleur rapport qualité-prix."
+            },
+            {
+                "id": 6776,
+                "titre": "Approvisionneur",
+                "description": "Il est responsable de l'achat des matériaux et des fournitures nécessaires à la production d'une entreprise. Cela peut impliquer de travailler avec des fournisseurs, de négocier des contrats et de gérer les stocks."
+            },
+            {
+                "id": 6863,
+                "titre": "Planificateur de la demande",
+                "description": "Le planificateur de la demande travaille en étroite collaboration avec les équipes de vente et de marketing pour prévoir la demande future de produits. Ils utilisent ces prévisions pour planifier les achats de matériaux et la production."
+            },
+            {
+                "id": 6864,
+                "titre": "Gestionnaire de stocks",
+                "description": "Le gestionnaire de stocks est responsable de la gestion du stock d'une entreprise. Ils doivent s'assurer qu'il y a suffisamment de stock pour répondre à la demande, sans que trop de produits ne restent invendus."
+            }
+        ],
+        "softskills": [
+            "Communication",
+            "Résolution de problèmes",
+            "Travail d'équipe",
+            "Flexibilité"
+        ],
+        "personnalites": [
+            "Organisé",
+            "Sérieux"
+        ],
+        "avantages": [
+            "Opportunités de négociation avec des fournisseurs",
+            "Capacité à influencer la gamme de produits",
+            "Rôle stratégique dans la rentabilité",
+            "Vue d'ensemble du marché",
+            "Opportunité de voyager pour sourcer des produits"
+        ],
+        "inconvenients": [
+            "Dépendance aux fournisseurs",
+            "Risque d'interruption de la chaîne d'approvisionnement",
+            "Fluctuations du marché",
+            "Négociations parfois tendues",
+            "Exposition aux fraudes"
+        ],
+        "icon": "mdi mdi-store",
+        "recommandation": 67,
+        "isDone": true,
+        "isFav": false,
+        "compatibilite": 100
+    },
+    {
+        "id": 31,
+        "titre": "Banque & Assurance",
+        "description": "Services financiers, Gestion des comptes, et assurance pour les particuliers et les entreprises",
+        "salaire": "5000 - 25000",
+        "metiers": [
+            {
+                "id": 6684,
+                "titre": "Conseiller bancaire",
+                "description": "Ce professionnel travaille directement avec les clients pour les aider à gérer leurs comptes bancaires. Il explique les différents produits et services disponibles, comme les prêts, les comptes d'épargne et les cartes de crédit."
+            },
+            {
+                "id": 6685,
+                "titre": "Gestionnaire de portefeuille",
+                "description": "Un gestionnaire de portefeuille supervise les investissements pour le compte de clients individuels ou d'entreprises. Ils décident où et quand investir l'argent de leurs clients pour obtenir le meilleur rendement possible."
+            },
+            {
+                "id": 6686,
+                "titre": "Agent d'assurance",
+                "description": "Ils vendent des polices d'assurance qui protègent les individus et les entreprises contre les risques financiers. Ils peuvent se spécialiser dans un certain type d'assurance, comme la vie, la santé, l'habitation ou l'automobile."
+            },
+            {
+                "id": 6687,
+                "titre": "Analyste financier",
+                "description": "Ils étudient les données financières et utilisent leurs résultats pour aider les entreprises à prendre des décisions sur leurs investissements. Ils peuvent également travailler avec des particuliers pour les aider à investir leur argent de manière judicieuse."
+            },
+            {
+                "id": 6688,
+                "titre": "Contrôleur de gestion",
+                "description": "Le contrôleur de gestion surveille les performances financières d'une entreprise et cherche des moyens de l'améliorer. Il/elle peut travailler sur la budgétisation, la prévision financière, l'analyse des coûts et d'autres tâches liées à la finance."
+            },
+            {
+                "id": 6780,
+                "titre": "Banquier personnel",
+                "description": "Un banquier personnel travaille directement avec des clients pour les aider à gérer leur argent et à planifier leur avenir financier. Ils peuvent aider à ouvrir des comptes, à obtenir des prêts et à planifier des investissements."
+            },
+            {
+                "id": 6781,
+                "titre": "Conseiller en assurance",
+                "description": "Un conseiller en assurance travaille avec des clients pour choisir les meilleures options d'assurance qui répondent à leurs besoins. Ils peuvent travailler dans divers domaines, tels que l'assurance vie, l'assurance maladie ou l'assurance automobile."
+            },
+            {
+                "id": 6782,
+                "titre": "Analyste de crédit",
+                "description": "Un analyste de crédit examine les informations financières des personnes ou des entreprises qui demandent un prêt pour déterminer leur capacité à rembourser le prêt. Ils aident les banques à décider si elles doivent ou non accorder un prêt."
+            },
+            {
+                "id": 6783,
+                "titre": "Responsable de la conformité",
+                "description": "Le responsable de la conformité veille à ce que la banque ou l'entreprise d'assurance respecte toutes les lois et réglementations en vigueur. Ils travaillent pour prévenir et détecter toute activité illégale ou frauduleuse."
+            },
+            {
+                "id": 6865,
+                "titre": "Conseiller clientèle en banque",
+                "description": "Ce professionnel travaille directement avec les clients pour répondre à leurs besoins financiers. Ils peuvent aider à ouvrir de nouveaux comptes, accorder des prêts ou conseiller sur les investissements. Ils sont généralement le premier point de contact pour les clients qui entrent dans une banque."
+            },
+            {
+                "id": 6866,
+                "titre": "Actuaire",
+                "description": "Ce professionnel utilise les mathématiques et les statistiques pour évaluer le risque financier. Dans une compagnie d'assurance, par exemple, l'actuaire peut déterminer les primes d'assurance en analysant divers facteurs de risque."
+            },
+            {
+                "id": 6867,
+                "titre": "Directeur de banque",
+                "description": "Ils supervisent toutes les opérations quotidiennes d'une banque. Cela peut inclure la supervision du personnel, l'interaction avec les clients, la résolution des problèmes et la veille à ce que la banque respecte toutes les lois et réglementations financières."
+            }
+        ],
+        "softskills": [
+            "Résolution de problèmes",
+            "Travail d'équipe",
+            "Leadership",
+            "Empathie"
+        ],
+        "personnalites": [
+            "Sérieux",
+            "Ambitieux",
+            "Organisé"
+        ],
+        "avantages": [
+            "Stabilité de l'emploi",
+            "Opportunités d'évolution professionnelle",
+            "Interaction avec une clientèle diversifiée",
+            "Compréhension approfondie des produits financiers",
+            "Rémunération compétitive avec bonus potentiels"
+        ],
+        "inconvenients": [
+            "Exposition aux crises financières",
+            "Pression pour atteindre les cibles",
+            "Réglementation stricte",
+            "Risque de fraude",
+            "Dépendance aux marchés mondiaux"
+        ],
+        "icon": "mdi mdi-cash-check",
+        "recommandation": 64,
+        "isDone": false,
+        "isFav": false,
+        "compatibilite": 0
+    },
+    {
+        "id": 33,
+        "titre": "BTP et Construction",
+        "description": "Construction de bâtiments, Infrastructures et travaux publics",
+        "salaire": "4500 - 20000",
+        "metiers": [
+            {
+                "id": 6694,
+                "titre": "Ingénieur en BTP",
+                "description": "Un ingénieur en BTP est responsable de la conception, de la planification et de la supervision de la construction de divers types de bâtiments et de structures, y compris les maisons, les bureaux, les routes et les ponts. Ils travaillent généralement en équipe avec d'autres professionnels de la construction."
+            },
+            {
+                "id": 6695,
+                "titre": "Architecte",
+                "description": "L'architecte crée des plans de conception pour de nouveaux bâtiments ou la rénovation de structures existantes. Il doit avoir une forte sensibilité artistique et une bonne compréhension des aspects techniques de la construction."
+            },
+            {
+                "id": 6696,
+                "titre": "Conducteur de travaux",
+                "description": "Le conducteur de travaux est le chef d'orchestre d'un chantier de construction. Il est responsable de la gestion quotidienne du chantier, y compris la supervision des travailleurs, la gestion des matériaux et l'assurance de la sécurité sur le chantier."
+            },
+            {
+                "id": 6697,
+                "titre": "Maçon",
+                "description": "Le maçon construit les fondations, les murs et les structures en brique, en béton ou en pierre des bâtiments. Il doit être précis, avoir une bonne condition physique et être capable de lire des plans de construction."
+            },
+            {
+                "id": 6698,
+                "titre": "Plombier-chauffagiste",
+                "description": "Le plombier-chauffagiste est responsable de l'installation, de la réparation et de l'entretien des systèmes de plomberie et de chauffage dans les bâtiments. Cela peut inclure tout, des tuyaux et des radiateurs aux systèmes de climatisation et aux chaudières."
+            },
+            {
+                "id": 6787,
+                "titre": "Ingénieur Civil",
+                "description": "Les ingénieurs civils sont responsables de la conception, de la construction, de l'entretien et de la réparation des infrastructures, comme les routes, les ponts, les barrages, les égouts et les bâtiments. Ils utilisent des logiciels de conception assistée par ordinateur pour créer des plans détaillés."
+            },
+            {
+                "id": 6788,
+                "titre": "Chef de chantier",
+                "description": "Le chef de chantier supervise les travaux sur le site de construction, s'assure que tout se déroule selon le plan et respecte les normes de sécurité. Il doit être organisé, résoudre les problèmes rapidement et avoir de bonnes compétences en communication."
+            },
+            {
+                "id": 6789,
+                "titre": "Conducteur d'engins de chantier",
+                "description": "Ce professionnel conduit et manipule les gros équipements utilisés sur un chantier de construction, comme les pelleteuses, les bulldozers ou les grues. Il doit être capable de travailler dans des conditions parfois difficiles et avoir une bonne coordination."
+            },
+            {
+                "id": 6871,
+                "titre": "Ingénieur en génie civil",
+                "description": "L'ingénieur en génie civil conçoit, planifie et supervise la construction de bâtiments, de routes, de ponts et d'autres infrastructures. Il doit avoir de solides compétences en mathématiques, en physique et en gestion de projet."
+            }
+        ],
+        "softskills": [
+            "Travail d'équipe",
+            "Leadership",
+            "Gestion du temps",
+            "Flexibilité"
+        ],
+        "personnalites": [
+            "Organisé",
+            "Ambitieux",
+            "Dynamique"
+        ],
+        "avantages": [
+            "Opportunités de projets d'envergure",
+            "Travail tangible et visible",
+            "Collaboration multidisciplinaire",
+            "Amélioration des infrastructures communautaires",
+            "Opportunités d'emplois à l'international"
+        ],
+        "inconvenients": [
+            "Risques liés aux chantiers",
+            "Dépendance à la conjoncture économique",
+            "Gestion de main d'œuvre diverse",
+            "Exposition aux intempéries",
+            "Réglementations environnementales"
+        ],
+        "icon": "mdi mdi-hammer",
+        "recommandation": 64,
+        "isDone": true,
+        "isFav": false,
+        "compatibilite": 100
+    },
+    {
+        "id": 39,
+        "titre": "Electrique",
+        "description": "Ingénierie électrique, Conception et maintenance des systèmes électriques",
+        "salaire": "4500 - 18000",
+        "metiers": [
+            {
+                "id": 6724,
+                "titre": "Électricien",
+                "description": "Un électricien est un professionnel qui installe, répare et entretient les systèmes électriques dans les maisons, les entreprises et les usines. Ils s'assurent que ces systèmes fonctionnent en toute sécurité et efficacement."
+            },
+            {
+                "id": 6725,
+                "titre": "Ingénieur électricien",
+                "description": "Un ingénieur électricien conçoit, développe et teste des équipements électriques. Ils peuvent travailler sur une variété de technologies, allant des microchips aux centrales électriques."
+            },
+            {
+                "id": 6726,
+                "titre": "Technicien en électronique",
+                "description": "Un technicien en électronique travaille avec des ingénieurs pour concevoir et construire des systèmes électroniques. Ils peuvent également effectuer des réparations et des mises à jour sur ces systèmes."
+            },
+            {
+                "id": 6727,
+                "titre": "Installateur de lignes électriques",
+                "description": "Ces professionnels installent et réparent les câbles et les fils qui transportent l'électricité de la centrale à nos maisons et entreprises. Ils travaillent souvent à l'extérieur et dans des conditions difficiles."
+            },
+            {
+                "id": 6728,
+                "titre": "Inspecteur de systèmes électriques",
+                "description": "Il s'agit d'un professionnel qui inspecte les systèmes électriques, les équipements et les composants pour identifier les dangers, les défauts ou la nécessité de réparation ou de remplacement. Ils s'assurent que les installations électriques sont conformes aux normes de sécurité et aux codes électriques."
+            },
+            {
+                "id": 6797,
+                "titre": "Technicien en systèmes d'alimentation",
+                "description": "Ils sont responsables de l'installation, de l'entretien et de la réparation des systèmes d'alimentation électrique, y compris les générateurs, les convertisseurs d'énergie et les dispositifs de distribution d'énergie. Ils travaillent avec des systèmes qui fournissent l'énergie nécessaire pour faire fonctionner divers équipements et installations."
+            },
+            {
+                "id": 6875,
+                "titre": "Inspecteur en électricité",
+                "description": "Un inspecteur en électricité vérifie que les installations et les réparations électriques sont conformes aux codes et aux réglementations de sécurité. Ils s'assurent que tout le travail électrique est effectué correctement pour prévenir les risques d'incendie et d'autres dangers."
+            }
+        ],
+        "softskills": [
+            "Résolution de problèmes",
+            "Travail d'équipe",
+            "Pensée critique",
+            "Adaptabilité"
+        ],
+        "personnalites": [
+            "Organisé",
+            "Sérieux",
+            "Curieux"
+        ],
+        "avantages": [
+            "Évolution constante des technologies",
+            "Opportunités dans les énergies renouvelables",
+            "Rôles essentiels dans l'infrastructure moderne",
+            "Opportunité de spécialisation",
+            "Demande croissante avec l'électrification des industries"
+        ],
+        "inconvenients": [
+            "Risque d'électrocution",
+            "Mise à jour constante des compétences",
+            "Exposition à des éléments dangereux",
+            "Nécessité de certifications",
+            "Dépendance aux technologies"
+        ],
+        "icon": "mdi mdi-bolt",
+        "recommandation": 64,
+        "isDone": false,
+        "isFav": false,
+        "compatibilite": 0
+    },
+    {
+        "id": 42,
+        "titre": "Gestion & Organisation",
+        "description": "Gestion des opérations, De la planification et de l'organisation au sein des entreprises",
+        "salaire": "4000 - 18000",
+        "metiers": [
+            {
+                "id": 6739,
+                "titre": "Gestionnaire de projet",
+                "description": "C'est la personne qui organise et supervise toutes les étapes d'un projet, de la conception à la réalisation. Elle doit être capable de gérer une équipe, de respecter un budget et de respecter les délais."
+            },
+            {
+                "id": 6740,
+                "titre": "Consultant en Management",
+                "description": "Ce professionnel aide les entreprises à améliorer leurs performances et leur efficacité. Ils analysent les entreprises et créent des solutions pour les aider à atteindre leurs objectifs. Le travail peut impliquer la restructuration organisationnelle, la mise en œuvre de nouvelles procédures ou le changement de la culture d'entreprise."
+            },
+            {
+                "id": 6741,
+                "titre": "Directeur des Ressources Humaines",
+                "description": "Ce professionnel gère les politiques, les procédures et les programmes relatifs aux employés d'une entreprise. Ils sont responsables de l'embauche, de la formation, de l'évaluation de la performance et parfois du licenciement des employés."
+            },
+            {
+                "id": 6742,
+                "titre": "Contrôleur de gestion",
+                "description": "Il est responsable de la planification et du contrôle des budgets dans une entreprise. Il analyse les coûts, les revenus et les rendements pour aider à prendre des décisions financières éclairées."
+            },
+            {
+                "id": 6743,
+                "titre": "Responsable Logistique",
+                "description": "Ce poste implique la gestion de tous les aspects de la logistique dans une entreprise, y compris l'expédition, la réception, l'entreposage, la distribution et le transport. Le responsable logistique doit s'assurer que tous les produits arrivent à l'endroit correct, au bon moment et dans les conditions requises."
+            },
+            {
+                "id": 6882,
+                "titre": "Responsable des ressources humaines",
+                "description": "Il s'occupe de tout ce qui concerne le personnel d'une entreprise"
+            },
+            {
+                "id": 6883,
+                "titre": "Consultant en gestion",
+                "description": "Il conseille les entreprises sur la manière d'améliorer leur efficacité. Cela peut impliquer la proposition de nouvelles méthodes de travail, la réorganisation de certaines équipes ou la mise en place de nouvelles technologies."
+            },
+            {
+                "id": 6884,
+                "titre": "Directeur administratif et financier",
+                "description": "Il supervise toutes les opérations financières d'une entreprise, y compris la budgétisation, la comptabilité et la planification financière. Il travaille souvent en étroite collaboration avec le PDG pour aider à déterminer la direction stratégique de l'entreprise."
+            }
+        ],
+        "softskills": [
+            "Résolution de problèmes",
+            "Leadership",
+            "Gestion du temps",
+            "Adaptabilité"
+        ],
+        "personnalites": [
+            "Organisé",
+            "Ambitieux",
+            "Responsable"
+        ],
+        "avantages": [
+            "Amélioration continue des processus",
+            "Rôles clés dans l'entreprise",
+            "Opportunité de leadership",
+            "Collaboration interdépartementale",
+            "Formation continue"
+        ],
+        "inconvenients": [
+            "Nécessité de gérer de multiples projets",
+            "Risque économique",
+            "Dépendance à la technologie",
+            "Gestion des ressources humaines",
+            "Complexité de la planification"
+        ],
+        "icon": "mdi mdi-sitemap",
+        "recommandation": 64,
+        "isDone": false,
+        "isFav": false,
+        "compatibilite": 0
+    },
+    {
+        "id": 48,
+        "titre": "Mécanique",
+        "description": "Conception, Fabrication et maintenance de machines et systèmes mécaniques",
+        "salaire": "4000 - 15000",
+        "metiers": [
+            {
+                "id": 6769,
+                "titre": "Mécanicien automobile",
+                "description": "Ce professionnel est spécialisé dans l'entretien et la réparation des véhicules. Il peut travailler sur toutes les parties d'un véhicule, comme le moteur, les systèmes électroniques, les freins et plus encore. Il est un expert en diagnostic et résolution des problèmes de voiture."
+            },
+            {
+                "id": 6770,
+                "titre": "Ingénieur en mécanique",
+                "description": "L'ingénieur en mécanique conçoit et développe de nouvelles technologies dans des domaines tels que l'énergie, les transports ou la production industrielle. Ces professionnels utilisent leur compréhension des forces et du mouvement pour créer des produits plus efficaces et durables."
+            },
+            {
+                "id": 6771,
+                "titre": "Technicien en maintenance industrielle",
+                "description": "Ce professionnel s'occupe de l'entretien et de la réparation des machines industrielles. Il doit être capable de diagnostiquer et de résoudre les problèmes rapidement pour minimiser les temps d'arrêt de la production."
+            },
+            {
+                "id": 6772,
+                "titre": "Technicien en mécatronique",
+                "description": "Il combine les compétences en mécanique, électricité et informatique pour concevoir et réparer des systèmes automatisés. Il peut travailler dans des secteurs tels que la robotique, l'automobile ou l'électronique."
+            },
+            {
+                "id": 6773,
+                "titre": "Opérateur sur machines à commandes numériques",
+                "description": "Il fabrique des pièces mécaniques sur des machines-outils programmables. Il doit maîtriser la lecture de plans, la programmation et le réglage des machines."
+            },
+            {
+                "id": 6821,
+                "titre": "Opérateur de machine-outil",
+                "description": "L'opérateur de machine-outil est responsable de la configuration, de l'exploitation et de la maintenance des machines qui coupent, façonnent et terminent les métaux et autres matériaux. Ils doivent comprendre comment les machines fonctionnent et être capables de suivre des plans de fabrication précis."
+            },
+            {
+                "id": 6822,
+                "titre": "Dessinateur industriel",
+                "description": "Le dessinateur industriel crée des dessins détaillés qui serviront de guide pour la fabrication de machines et d'équipements. Ces dessins doivent être précis et inclure toutes les spécifications nécessaires pour la production."
+            },
+            {
+                "id": 6897,
+                "titre": "Ingénieur mécanique",
+                "description": "C'est un professionnel qui conçoit, teste et développe diverses machines et dispositifs mécaniques. Ils peuvent travailler sur des projets allant des moteurs d'avions aux systèmes de refroidissement en passant par les systèmes médicaux."
+            },
+            {
+                "id": 6898,
+                "titre": "Technicien en génie mécanique",
+                "description": "Ce professionnel travaille souvent sous la supervision d'un ingénieur mécanique et aide à la conception, au développement et au test de divers équipements mécaniques. Ils peuvent également être impliqués dans la maintenance et la réparation de ces équipements."
+            },
+            {
+                "id": 6899,
+                "titre": "Opérateur de machines-outils",
+                "description": "C'est un travailleur qui opère et maintient divers types de machines utilisées dans la fabrication de pièces mécaniques. Ils doivent être capables de lire des plans et de suivre des instructions précises pour assurer la production de pièces de haute qualité."
+            },
+            {
+                "id": 6900,
+                "titre": "Technicien de maintenance industrielle",
+                "description": "Ces professionnels effectuent des réparations et entretiennent des équipements industriels pour garantir leur bon fonctionnement. Ils doivent être capables de diagnostiquer et de résoudre rapidement les problèmes pour minimiser les temps d'arrêt de la production."
+            }
+        ],
+        "softskills": [
+            "Travail d'équipe",
+            "Leadership",
+            "Gestion du temps",
+            "Flexibilité"
+        ],
+        "personnalites": [
+            "Organisé",
+            "Curieux",
+            "Réfléchi"
+        ],
+        "avantages": [
+            "Développement de produits novateurs",
+            "Rôle clé dans l'industrie",
+            "Opportunités de spécialisation",
+            "Collaboration interdépartementale",
+            "Reconnaissance professionnelle"
+        ],
+        "inconvenients": [
+            "Exposition aux produits chimiques",
+            "Risques d'accidents",
+            "Mises à jour constantes des compétences",
+            "Dépendance aux technologies",
+            "Bruits et environnement de travail"
+        ],
+        "icon": "mdi mdi-wrench",
+        "recommandation": 64,
+        "isDone": false,
+        "isFav": false,
+        "compatibilite": 0
+    },
+    {
+        "id": 51,
+        "titre": "Qualité & Sécurité",
+        "description": "Assurer la qualité et la sécurité des produits et services au sein des entreprises",
+        "salaire": "4500 - 18000",
+        "metiers": [
+            {
+                "id": 6833,
+                "titre": "Responsable qualité",
+                "description": "Un responsable qualité est chargé de veiller à ce que les produits ou services d'une entreprise répondent à certaines normes de qualité. Ils travaillent souvent avec des équipes de production pour identifier et résoudre les problèmes qui pourraient affecter la qualité."
+            },
+            {
+                "id": 6834,
+                "titre": "Ingénieur sécurité",
+                "description": "Un ingénieur sécurité est chargé de développer et de mettre en œuvre des systèmes de sécurité pour protéger les informations et les ressources d'une entreprise. Ils peuvent travailler sur la sécurité physique, comme les systèmes d'alarme et de surveillance, ou sur la sécurité informatique, comme la protection contre les virus et les attaques de pirates."
+            },
+            {
+                "id": 6835,
+                "titre": "Inspecteur de la Santé et Sécurité au Travail",
+                "description": "L'inspecteur de la santé et sécurité au travail vérifie que les entreprises respectent les lois et réglementations en matière de santé et de sécurité. Ils effectuent des inspections régulières, identifient les dangers potentiels et travaillent avec l'entreprise pour améliorer les conditions de travail."
+            },
+            {
+                "id": 6836,
+                "titre": "Technicien Contrôle Qualité",
+                "description": "Le technicien de contrôle qualité effectue des tests sur les produits pour s'assurer qu'ils respectent les normes de qualité de l'entreprise. Ils peuvent travailler dans divers secteurs, comme l'alimentation, l'automobile ou la technologie."
+            },
+            {
+                "id": 6837,
+                "titre": "Consultant en Management de la Qualité",
+                "description": "Le consultant en management de la qualité aide les entreprises à améliorer leurs processus et leurs systèmes pour augmenter la qualité de leurs produits ou services. Ils peuvent proposer des améliorations, former le personnel à de nouvelles méthodes de travail et aider à mettre en place des systèmes de gestion de la qualité."
+            },
+            {
+                "id": 6906,
+                "titre": "Inspecteur de la santé et de la sécurité",
+                "description": "Un inspecteur de la santé et de la sécurité travaille pour s'assurer qu'une entreprise respecte toutes les lois et réglementations en matière de santé et de sécurité. Ils effectuent des inspections régulières, identifient les dangers potentiels et recommandent des améliorations."
+            },
+            {
+                "id": 6907,
+                "titre": "Analyste de la qualité",
+                "description": "Un analyste de la qualité évalue les processus de production d'une entreprise pour s'assurer qu'ils sont efficaces et qu'ils produisent des produits de haute qualité. Ils utilisent des outils statistiques pour analyser les données de production et recommander des améliorations."
+            },
+            {
+                "id": 6908,
+                "titre": "Consultant en gestion des risques",
+                "description": "Un consultant en gestion des risques aide les entreprises à identifier et à gérer les risques potentiels pour leur entreprise. Cela peut inclure des risques financiers, tels que les fluctuations du marché, ou des risques opérationnels, tels que les pannes d'équipement. Ils travaillent avec l'entreprise pour développer des stratégies pour minimiser ces risques."
+            }
+        ],
+        "softskills": [
+            "Résolution de problèmes",
+            "Travail d'équipe",
+            "Pensée critique",
+            "Adaptabilité"
+        ],
+        "personnalites": [
+            "Organisé",
+            "Sérieux",
+            "Responsable"
+        ],
+        "avantages": [
+            "Assurer la qualité des produits",
+            "Rôles cruciaux pour la réputation de l'entreprise",
+            "Formation continue",
+            "Collaboration interdépartementale",
+            "Opportunité d'évoluer vers des rôles de leadership"
+        ],
+        "inconvenients": [
+            "Exigences réglementaires",
+            "Gestion des crises",
+            "Pression pour des standards élevés",
+            "Gestion des retours négatifs",
+            "Mises à jour constantes des normes"
+        ],
+        "icon": "mdi mdi-security",
+        "recommandation": 64,
+        "isDone": false,
+        "isFav": false,
+        "compatibilite": 0
+    },
+    {
+        "id": 34,
+        "titre": "Commerce & Vente",
+        "description": "Vente, Marketing et gestion des activités commerciales",
+        "salaire": "4000 - 15000",
+        "metiers": [
+            {
+                "id": 6699,
+                "titre": "Vendeur en magasin",
+                "description": "C'est la personne qui accueille et conseille les clients dans un magasin. Il peut travailler dans divers secteurs comme l'habillement, l'électronique, l'alimentation, etc. Son rôle est de guider le client vers le produit qui lui convient le mieux et de finaliser la vente."
+            },
+            {
+                "id": 6700,
+                "titre": "Responsable des ventes",
+                "description": "Le responsable des ventes supervise une équipe de vendeurs. Il est responsable de la définition des objectifs de vente, de la formation des vendeurs, et du suivi des performances de vente. Il doit également développer des stratégies pour augmenter les ventes."
+            },
+            {
+                "id": 6701,
+                "titre": "Représentant Commercial",
+                "description": "Il travaille pour une entreprise, vendant ses produits ou services à d'autres entreprises ou organisations. Ils doivent souvent voyager pour rencontrer des clients potentiels et existants, faire des démonstrations de produits et négocier des contrats."
+            },
+            {
+                "id": 6702,
+                "titre": "Acheteur",
+                "description": "L'acheteur est responsable de l'achat de produits pour une entreprise. Il doit rechercher et négocier avec les fournisseurs pour obtenir les meilleurs prix et conditions. Il doit également suivre les tendances du marché et comprendre les besoins des clients pour choisir les bons produits."
+            },
+            {
+                "id": 6703,
+                "titre": "Responsable de magasin",
+                "description": "Le responsable de magasin supervise toutes les opérations d'un magasin, y compris la gestion du personnel, le suivi des stocks, l'organisation du magasin et la satisfaction des clients. Il est responsable du bon fonctionnement du magasin et de l'atteinte des objectifs de vente."
+            },
+            {
+                "id": 6790,
+                "titre": "Vendeur / Vendeuse",
+                "description": "Ce professionnel interagit directement avec les clients, les aidant à trouver les produits qu'ils recherchent et à effectuer des ventes. Il peut travailler dans une variété de contextes, y compris les magasins de détail, les concessionnaires automobiles et les magasins d'électronique."
+            },
+            {
+                "id": 6791,
+                "titre": "Gestionnaire de Magasin",
+                "description": "Aussi appelé directeur de magasin, il est responsable de la supervision de toutes les opérations d'un magasin de détail. Cela peut inclure la gestion de l'inventaire, la supervision des employés, la mise en place des vitrines et la gestion des opérations financières."
+            },
+            {
+                "id": 6792,
+                "titre": "Conseiller en Ventes",
+                "description": "Il travaille avec les clients pour déterminer leurs besoins et leurs désirs, puis propose des produits ou des services qui répondent à ces besoins. Cela peut inclure la démonstration de l'utilisation d'un produit, la réponse aux questions du client, et la conclusion de la vente."
+            },
+            {
+                "id": 6872,
+                "titre": "Commercial",
+                "description": "Le commercial est chargé de vendre des produits ou des services à des clients, généralement dans un cadre B2B (business to business). Il doit développer son portefeuille de clients et maintenir une bonne relation avec eux afin de maximiser les ventes."
+            }
+        ],
+        "softskills": [
+            "Communication",
+            "Adaptabilité",
+            "Collaboration",
+            "Orientation client"
+        ],
+        "personnalites": [
+            "Sociable",
+            "Ambitieux",
+            "Charismatique"
+        ],
+        "avantages": [
+            "Relation directe avec les clients",
+            "Compréhension approfondie des produits",
+            "Flexibilité des horaires dans de nombreux rôles",
+            "Potentiel de commissions",
+            "Opportunités de voyage pour les salons commerciaux"
+        ],
+        "inconvenients": [
+            "Pression pour atteindre les quotas",
+            "Négociations avec les fournisseurs",
+            "Compétition intense",
+            "Gestion des stocks",
+            "Évolutions rapides du marché"
+        ],
+        "icon": "mdi mdi-cash-register",
+        "recommandation": 57,
+        "isDone": false,
+        "isFav": false,
+        "compatibilite": 0
+    },
+    {
+        "id": 37,
+        "titre": "Edition & Journalisme",
+        "description": "Rédaction, Édition et publication d'articles et de contenus journalistiques",
+        "salaire": "3500 - 12000",
+        "metiers": [
+            {
+                "id": 6714,
+                "titre": "Journaliste",
+                "description": "C'est quelqu'un qui recueille les informations, réalise des recherches et crée des articles qui sont ensuite publiés dans des journaux, des magazines ou sur des sites web. Le travail peut également impliquer des interviews et la couverture d'événements."
+            },
+            {
+                "id": 6715,
+                "titre": "Éditeur",
+                "description": "Ils supervisent le processus de publication. Ils travaillent avec les auteurs pour peaufiner leur travail, s'assurent que le texte est de qualité, sans erreurs et prêt à être publié. Ils ont également la responsabilité de décider quels livres ou articles doivent être publiés."
+            },
+            {
+                "id": 6716,
+                "titre": "Correcteur",
+                "description": "Leur travail consiste à lire des textes et à chercher des erreurs de grammaire, de ponctuation et d'orthographe. Ils s'assurent que le texte est clair, cohérent et sans erreurs avant qu'il ne soit publié."
+            },
+            {
+                "id": 6717,
+                "titre": "Rédacteur en chef",
+                "description": "Ils dirigent la production de contenu pour des journaux, des magazines, des bulletins d'information, des sites web, etc. Ils définissent et maintiennent le ton et le style de la publication, supervisent le travail des journalistes et des éditeurs, et décident quels articles ou reportages doivent être publiés."
+            },
+            {
+                "id": 6718,
+                "titre": "Photojournaliste",
+                "description": "Ce professionnel utilise la photographie pour raconter une histoire ou documenter un événement. Il peut travailler pour un journal, une agence de presse, une organisation non gouvernementale ou en freelance. Le travail peut être stressant et exige souvent de voyager."
+            },
+            {
+                "id": 6874,
+                "titre": "Reporter",
+                "description": "Ces journalistes se spécialisent dans la couverture d'événements en direct, tels que des conférences de presse, des événements sportifs ou des incidents de dernière minute. Ils sont souvent sur le terrain pour recueillir des informations, réalisent des interviews et rédigent des reportages sur l'événement."
+            }
+        ],
+        "softskills": [
+            "Communication",
+            "Travail d'équipe",
+            "Flexibilité",
+            "Collaboration"
+        ],
+        "personnalites": [
+            "Curieux",
+            "Sociable",
+            "Ouvert d'esprit"
+        ],
+        "avantages": [
+            "Expression par l'écriture",
+            "Opportunités de reportages sur le terrain",
+            "Influence directe sur le public",
+            "Diversité des sujets traités",
+            "Opportunité de construire un réseau professionnel"
+        ],
+        "inconvenients": [
+            "Rapidité des cycles d'information",
+            "Risques liés à la diffusion",
+            "Compétition intense",
+            "Risques liés à la liberté d'expression",
+            "Dépendance à la technologie"
+        ],
+        "icon": "mdi mdi-newspaper",
+        "recommandation": 57,
+        "isDone": true,
+        "isFav": false,
+        "compatibilite": 100
+    },
+    {
+        "id": 38,
+        "titre": "Enseignement",
+        "description": "Enseignement et formation dans divers domaines",
+        "salaire": "3000 - 8000",
+        "metiers": [
+            {
+                "id": 6719,
+                "titre": "Professeur",
+                "description": "Ils aident les élèves à comprendre les concepts académiques en utilisant une variété de méthodes d'enseignement. Ils préparent également des leçons, évaluent les performances des élèves et développent des plans pour améliorer leurs compétences."
+            },
+            {
+                "id": 6720,
+                "titre": "Conseiller d'orientation",
+                "description": "Un conseiller d'orientation aide les élèves à faire des choix d'éducation et de carrière. Ils offrent des conseils sur les cours à suivre, les universités à envisager et les carrières potentielles qui correspondent aux intérêts et talents de chaque élève."
+            },
+            {
+                "id": 6721,
+                "titre": "Directeur d'école",
+                "description": "Un directeur est responsable de la gestion d'une école, y compris l'embauche et la supervision des enseignants, la création de politiques scolaires, la supervision des budgets et l'assurance de la qualité de l'éducation fournie."
+            },
+            {
+                "id": 6722,
+                "titre": "Éducateur spécialisé",
+                "description": "Un éducateur spécialisé travaille avec des élèves qui ont des besoins éducatifs spéciaux, comme des troubles d'apprentissage ou des handicaps physiques. Ils adaptent les leçons et le matériel pédagogique pour répondre aux besoins individuels de chaque élève, et travaillent en étroite collaboration avec les parents et d'autres professionnels de l'éducation pour soutenir l'apprentissage de l'élève."
+            },
+            {
+                "id": 6723,
+                "titre": "Bibliothécaire scolaire",
+                "description": "Un bibliothécaire scolaire organise et gère les ressources éducatives dans une école. Ils aident les élèves et les enseignants à trouver et utiliser efficacement les informations, et peuvent également enseigner des compétences en recherche et en littératie."
+            },
+            {
+                "id": 6796,
+                "titre": "Enseignant",
+                "description": "Un enseignant est un professionnel qui aide les élèves à acquérir des connaissances, des compétences et des valeurs à travers diverses matières. Ils planifient et donnent des cours, créent et notent des examens, et encouragent les élèves à réussir."
+            }
+        ],
+        "softskills": [
+            "Communication",
+            "Empathie",
+            "Travail d'équipe",
+            "Adaptabilité"
+        ],
+        "personnalites": [
+            "Généreux",
+            "Sociable",
+            "Tolérant"
+        ],
+        "avantages": [
+            "Impact direct sur la prochaine génération",
+            "Stabilité de l'emploi",
+            "Interaction continue avec les élèves",
+            "Opportunités de développement professionnel",
+            "Vacances régulières"
+        ],
+        "inconvenients": [
+            "Charge émotionnelle",
+            "Gestion de classes difficiles",
+            "Responsabilités élevées",
+            "Nécessité de formations continues",
+            "Pressions administratives"
+        ],
+        "icon": "mdi mdi-school",
+        "recommandation": 57,
+        "isDone": false,
+        "isFav": false,
+        "compatibilite": 0
+    },
+    {
+        "id": 41,
+        "titre": "Fonction Publique",
+        "description": "Emplois au sein des administrations publiques et des services gouvernementaux",
+        "salaire": "3000 - 6000",
+        "metiers": [
+            {
+                "id": 6734,
+                "titre": "Agent administratif",
+                "description": "Il s'agit d'un métier où vous travaillerez dans un bureau, effectuant des tâches administratives telles que le classement, la rédaction de lettres, la gestion des appels téléphoniques et la saisie de données. Vous pourriez travailler dans n'importe quel ministère ou agence gouvernementale."
+            },
+            {
+                "id": 6735,
+                "titre": "Policier",
+                "description": "Un policier est chargé de maintenir l'ordre public, de prévenir et de détecter les crimes. Ils sont souvent les premiers à répondre en cas de situation d'urgence ou de danger."
+            },
+            {
+                "id": 6736,
+                "titre": "Infirmière scolaire",
+                "description": "En tant qu'infirmière scolaire, vous serez responsable de la santé et du bien-être des élèves dans une école. Cela peut inclure des tâches telles que la réalisation de contrôles de santé de routine, la prestation de premiers soins, et la sensibilisation à des questions de santé importantes."
+            },
+            {
+                "id": 6737,
+                "titre": "Professeur",
+                "description": "Le rôle d'un professeur dans la fonction publique est d'éduquer les élèves dans une matière ou un domaine spécifique. Ils préparent les leçons, évaluent les progrès des élèves, et peuvent également participer à des activités parascolaires. Ils jouent un rôle clé dans le développement de la jeunesse."
+            },
+            {
+                "id": 6738,
+                "titre": "Urbaniste",
+                "description": "Les urbanistes travaillent pour les gouvernements locaux et régionaux, planifiant et supervisant l'utilisation des terres dans les villes et les régions. Ils aident à créer des communautés, à accommoder la croissance de la population, et à revitaliser les zones physiques, sociales et économiques des villes et des régions."
+            },
+            {
+                "id": 6802,
+                "titre": "Fonctionnaire",
+                "description": "Un fonctionnaire est une personne qui travaille pour le gouvernement dans n'importe quel secteur, comme l'éducation, la santé, la sécurité, etc. Leur rôle est de fournir des services à la population et de faire en sorte que les lois et les règlements soient respectés."
+            },
+            {
+                "id": 6803,
+                "titre": "Enseignant",
+                "description": "Un enseignant dans la fonction publique travaille dans les écoles publiques, enseignant aux élèves des sujets variés comme les maths, l'anglais, la science, l'histoire, etc. Ils jouent un rôle crucial dans la formation et le développement des jeunes esprits."
+            },
+            {
+                "id": 6804,
+                "titre": "Infirmière",
+                "description": "Une infirmière dans le secteur public travaille dans les hôpitaux et les cliniques gérés par le gouvernement. Elles fournissent des soins aux patients, administrent des médicaments et travaillent en étroite collaboration avec les médecins pour assurer le bien-être des patients."
+            },
+            {
+                "id": 6805,
+                "titre": "Administrateur de la fonction publique",
+                "description": "Ces professionnels travaillent généralement dans les bureaux du gouvernement où ils gèrent diverses tâches administratives, comme la gestion des documents, l'organisation des réunions, la rédaction des rapports, etc. Ils jouent un rôle vital dans le fonctionnement efficace du gouvernement."
+            },
+            {
+                "id": 6877,
+                "titre": "Administrateur Civil",
+                "description": "Il s'agit d'un poste de haut niveau dans l'administration publique. L'administrateur civil est responsable de la mise en œuvre des politiques gouvernementales et de la gestion des ressources humaines et financières. Il peut travailler dans divers domaines tels que l'éducation, la santé, l'environnement, etc."
+            },
+            {
+                "id": 6878,
+                "titre": "Contrôleur des Finances Publiques",
+                "description": "Ce professionnel est en charge de la gestion des finances publiques. Il peut travailler dans la collecte des impôts, le contrôle fiscal, la comptabilité publique ou encore la gestion du patrimoine de l'État."
+            },
+            {
+                "id": 6879,
+                "titre": "Attaché Territorial",
+                "description": "Ce poste est principalement axé sur la gestion administrative, financière et sociale au sein des collectivités territoriales (mairies, départements, régions). Il peut avoir différentes responsabilités, comme la gestion du personnel, la mise en œuvre des projets locaux, la communication, etc."
+            },
+            {
+                "id": 6880,
+                "titre": "Inspecteur du Travail",
+                "description": "L'inspecteur du travail veille à l'application de la législation du travail. Il conseille et informe les employeurs et les salariés sur leurs droits et obligations, contrôle les conditions de travail et peut être amené à intervenir en cas de conflit."
+            },
+            {
+                "id": 6881,
+                "titre": "Professeur dans l'Education Nationale",
+                "description": "Ce professionnel a pour mission d'enseigner une discipline à des élèves, d'évaluer leur travail, de les soutenir dans leur progression et de contribuer à leur éducation citoyenne. Il travaille dans les écoles, collèges et lycées publics."
+            }
+        ],
+        "softskills": [
+            "Résolution de problèmes",
+            "Leadership",
+            "Gestion du temps",
+            "Empathie"
+        ],
+        "personnalites": [
+            "Réfléchi",
+            "Persévérant",
+            "Responsable"
+        ],
+        "avantages": [
+            "Stabilité et bénéfices de l'emploi",
+            "Variété de rôles",
+            "Opportunités de servir la communauté",
+            "Programmes de formation",
+            "Retraite avantageuse"
+        ],
+        "inconvenients": [
+            "Stabilité d'emploi parfois précaire",
+            "Dépendance aux décisions politiques",
+            "Exigences élevées de confidentialité",
+            "Compétition pour les postes",
+            "Pression des attentes publiques"
+        ],
+        "icon": "mdi mdi-domain",
+        "recommandation": 57,
+        "isDone": false,
+        "isFav": false,
+        "compatibilite": 0
+    },
+    {
+        "id": 43,
+        "titre": "Hôtellerie & Tourisme",
+        "description": "Gestion des établissements hôteliers et des services touristiques",
+        "salaire": "3000 - 10000",
+        "metiers": [
+            {
+                "id": 6744,
+                "titre": "Réceptionniste d'hôtel",
+                "description": "Il s'agit de la première personne que vous rencontrez en entrant dans un hôtel. Le réceptionniste est responsable de l'accueil des clients, de la gestion des réservations, de la réponse aux questions et des recommandations sur les attractions locales."
+            },
+            {
+                "id": 6745,
+                "titre": "Agent de voyage",
+                "description": "Un agent de voyage aide ses clients à planifier et à organiser leurs voyages. Il peut s'agir de réserver des vols, des hôtels, des excursions et bien plus encore. Ils doivent être bien informés sur les différentes destinations et capables de donner des conseils sur les meilleurs endroits à visiter."
+            },
+            {
+                "id": 6746,
+                "titre": "Gérant d'hôtel",
+                "description": "Le gérant d'hôtel supervise toutes les opérations de l'établissement, de la gestion du personnel à la satisfaction des clients. Il doit s'assurer que tout se passe bien et que les clients sont satisfaits de leur séjour."
+            },
+            {
+                "id": 6747,
+                "titre": "Guide touristique",
+                "description": "Ce professionnel accompagne les groupes de touristes lors de visites guidées de différentes attractions. Ils fournissent des informations détaillées sur l'histoire, la culture, l'architecture et d'autres aspects intéressants des lieux visités."
+            },
+            {
+                "id": 6748,
+                "titre": "Chef cuisinier",
+                "description": "Travailler comme chef dans l'industrie de l'hôtellerie peut être très gratifiant. Le chef est responsable de la création des menus, de la préparation des plats et de la gestion de la cuisine. Un chef doit être créatif, organisé et capable de travailler sous pression."
+            },
+            {
+                "id": 6806,
+                "titre": "Directeur d'hôtel",
+                "description": "Il gère toutes les opérations d'un hôtel, y compris le recrutement et la supervision du personnel, la gestion des budgets, la satisfaction des clients et la maintenance de l'hôtel."
+            },
+            {
+                "id": 6807,
+                "titre": "Agent de voyages",
+                "description": "Ce professionnel s'occupe de la planification et de la réservation des voyages pour ses clients. Il peut s'agir de réservations d'hôtels, de vols, de voitures de location, de croisières et d'autres activités liées au voyage."
+            },
+            {
+                "id": 6885,
+                "titre": "Hôte/Hôtesse de l'air",
+                "description": "Ils sont responsables du bien-être des passagers à bord d'un avion. Leurs tâches comprennent l'accueil des passagers, la démonstration des consignes de sécurité, la distribution des repas et boissons, et l'assistance aux passagers en cas de besoin."
+            }
+        ],
+        "softskills": [
+            "Communication",
+            "Travail d'équipe",
+            "Empathie",
+            "Gestion du stress"
+        ],
+        "personnalites": [
+            "Sociable",
+            "Généreux",
+            "Optimiste"
+        ],
+        "avantages": [
+            "Interaction avec une clientèle internationale",
+            "Diversité des rôles",
+            "Opportunités de voyager",
+            "Rencontre de nouvelles cultures",
+            "Potentiel de pourboires"
+        ],
+        "inconvenients": [
+            "Clientèle parfois difficile",
+            "Horaires irréguliers",
+            "Saisonnalité du secteur",
+            "Concurrence élevée",
+            "Fluctuations des tendances touristiques"
+        ],
+        "icon": "mdi mdi-bag-suitcase",
+        "recommandation": 57,
+        "isDone": false,
+        "isFav": false,
+        "compatibilite": 0
+    },
+    {
+        "id": 49,
+        "titre": "Mode",
+        "description": "Conception, Création et commercialisation de vêtements et accessoires",
+        "salaire": "4000 - 10000",
+        "metiers": [
+            {
+                "id": 6823,
+                "titre": "Styliste de mode",
+                "description": "Ce professionnel crée des vêtements, des chaussures et des accessoires de mode. Ils travaillent pour des marques de mode, des magazines ou des célébrités. Les stylistes utilisent leurs compétences artistiques et leur sens aigu de la tendance pour concevoir de nouvelles collections."
+            },
+            {
+                "id": 6824,
+                "titre": "Acheteur de mode",
+                "description": "L'acheteur de mode travaille pour des magasins de vêtements ou des sites de vente en ligne. Il est chargé de sélectionner les vêtements et accessoires qui seront vendus en magasin. Il doit avoir un bon sens du style et une bonne connaissance des tendances actuelles."
+            },
+            {
+                "id": 6825,
+                "titre": "Rédacteur de mode",
+                "description": "Le rédacteur de mode travaille généralement pour des magazines ou des sites web spécialisés dans la mode. Il écrit des articles sur les dernières tendances, les défilés, les designers et tout ce qui touche à la mode. Il peut également être amené à interviewer des personnalités de la mode."
+            },
+            {
+                "id": 6826,
+                "titre": "Photographe de mode",
+                "description": "Le photographe de mode est spécialisé dans la prise de photos de vêtements, d'accessoires et de mannequins pour des magazines, des catalogues ou des publicités. Il travaille souvent en étroite collaboration avec des stylistes et des directeurs artistiques."
+            },
+            {
+                "id": 6827,
+                "titre": "Directeur artistique de mode",
+                "description": "Un directeur artistique de mode est responsable de la manière dont les vêtements, les accessoires et les modèles sont présentés dans les publicités, les défilés de mode et les campagnes de marketing. Ils travaillent en étroite collaboration avec les photographes et les stylistes pour créer une image de marque cohérente."
+            },
+            {
+                "id": 6901,
+                "titre": "Directeur artistique",
+                "description": "Le directeur artistique en mode est responsable de l'aspect visuel d'une marque, d'un magazine ou d'un défilé de mode. Il conçoit et supervise la mise en scène, le décor, l'éclairage et la musique. Il travaille en collaboration avec des stylistes, des photographes et des graphistes pour créer une image cohérente et attrayante."
+            }
+        ],
+        "softskills": [
+            "Résolution de problèmes",
+            "Leadership",
+            "Gestion du temps",
+            "Adaptabilité"
+        ],
+        "personnalites": [
+            "Créatif",
+            "Ambitieux",
+            "Dynamique"
+        ],
+        "avantages": [
+            "Création de tendances",
+            "Opportunités de shows internationaux",
+            "Collaboration avec des designers renommés",
+            "Expression personnelle",
+            "Opportunité de freelance"
+        ],
+        "inconvenients": [
+            "Fluctuations des tendances",
+            "Concurrence intense",
+            "Saisonnalité des collections",
+            "Gestion de la production",
+            "Dépendance aux fournisseurs"
+        ],
+        "icon": "mdi mdi-tshirt-crew",
+        "recommandation": 57,
+        "isDone": true,
+        "isFav": false,
+        "compatibilite": 25
+    },
+    {
+        "id": 50,
+        "titre": "Production & Industrialisation",
+        "description": "Gestion de la production et de la fabrication industrielle",
+        "salaire": "5000 - 22000",
+        "metiers": [
+            {
+                "id": 6828,
+                "titre": "Ingénieur de production",
+                "description": "Ce professionnel est responsable de la conception et de l'amélioration des processus de production dans une usine. Il travaille à augmenter l'efficacité et à réduire les coûts tout en maintenant la qualité du produit."
+            },
+            {
+                "id": 6829,
+                "titre": "Technicien de maintenance industrielle",
+                "description": "Le technicien de maintenance est responsable de l'entretien, de la réparation et de l'optimisation des machines et équipements industriels. Il s'assure que tout fonctionne correctement et en toute sécurité."
+            },
+            {
+                "id": 6830,
+                "titre": "Contrôleur de qualité",
+                "description": "Le contrôleur de qualité veille à ce que les produits fabriqués répondent aux normes de qualité établies. Ils effectuent des tests et des inspections régulières pour s'assurer que les produits sont de la meilleure qualité possible."
+            },
+            {
+                "id": 6831,
+                "titre": "Opérateur de machine",
+                "description": "L'opérateur de machine est responsable de la gestion des machines qui fabriquent les produits. Ils doivent configurer la machine, surveiller son fonctionnement et résoudre les problèmes qui peuvent survenir."
+            },
+            {
+                "id": 6832,
+                "titre": "Chef de projet industriel",
+                "description": "Le chef de projet industriel est responsable de la gestion de projets liés à la production industrielle. Cela peut inclure la supervision de la construction de nouvelles installations de production, l'amélioration des processus de production existants ou la coordination de grands projets de fabrication."
+            },
+            {
+                "id": 6902,
+                "titre": "Ingénieur en production industrielle",
+                "description": "Ce professionnel joue un rôle clé dans la supervision du processus de production dans les usines et autres environnements industriels. Il travaille pour améliorer l'efficacité, augmenter la production et assurer la qualité des produits."
+            },
+            {
+                "id": 6903,
+                "titre": "Opérateur de production",
+                "description": "Ce travailleur est à la base du processus de fabrication. Il opère des machines, effectue des contrôles de qualité et veille à ce que les produits soient fabriqués correctement et en temps voulu."
+            },
+            {
+                "id": 6904,
+                "titre": "Responsable de la chaîne logistique",
+                "description": "Ce professionnel supervise toutes les étapes de la chaîne logistique, de l'achat des matières premières à la livraison des produits finis. Il coordonne et optimise les flux de produits pour assurer l'efficacité et la rentabilité."
+            },
+            {
+                "id": 6905,
+                "titre": "Contrôleur qualité",
+                "description": "Le contrôleur qualité vérifie que les produits fabriqués respectent les normes de qualité établies par l'entreprise et la législation. Il effectue des contrôles réguliers et met en place des mesures correctives si nécessaire."
+            }
+        ],
+        "softskills": [
+            "Communication",
+            "Travail d'équipe",
+            "Empathie",
+            "Gestion du stress"
+        ],
+        "personnalites": [
+            "Organisé",
+            "Ambitieux",
+            "Responsable"
+        ],
+        "avantages": [
+            "Amélioration de la production",
+            "Opportunité d'innovation",
+            "Rôles clés dans l'entreprise",
+            "Formation continue",
+            "Collaboration multidisciplinaire"
+        ],
+        "inconvenients": [
+            "Pressions pour la productivité",
+            "Dépendance aux matières premières",
+            "Concurrence internationale",
+            "Respect des normes environnementales",
+            "Gestion de main d'oeuvres"
+        ],
+        "icon": "mdi mdi-factory",
+        "recommandation": 57,
+        "isDone": false,
+        "isFav": false,
+        "compatibilite": 0
+    },
+    {
+        "id": 54,
+        "titre": "Ressources Humaines",
+        "description": "Gestion des ressources humaines, Recrutement, Formation et développement du personnel",
+        "salaire": "4000 - 18000",
+        "metiers": [
+            {
+                "id": 6848,
+                "titre": "Gestionnaire des Ressources Humaines",
+                "description": "C'est la personne qui coordonne, supervise et gère toutes les activités liées aux employés d'une entreprise, comme le recrutement, la formation, l'évaluation des performances et le maintien d'un bon environnement de travail."
+            },
+            {
+                "id": 6849,
+                "titre": "Recruteur",
+                "description": "Le recruteur est celui qui est chargé de trouver et d'embaucher de nouveaux employés pour l'entreprise. Ils analysent les besoins de l'entreprise, publient des annonces, font des entretiens et sélectionnent les meilleurs candidats."
+            },
+            {
+                "id": 6850,
+                "titre": "Conseiller en formation",
+                "description": "Ce professionnel aide les employés à développer leurs compétences et à progresser dans leur carrière. Ils organisent des formations, des ateliers et d'autres activités éducatives pour améliorer les compétences des employés."
+            },
+            {
+                "id": 6851,
+                "titre": "Gestionnaire des avantages et des rémunérations",
+                "description": "Ce rôle implique la gestion des salaires et des avantages offerts par l'entreprise. Le gestionnaire de rémunération doit s'assurer que les salaires et les avantages sont équitables, compétitifs et conformes à la réglementation."
+            },
+            {
+                "id": 6852,
+                "titre": "Responsable des relations de travail",
+                "description": "Ce professionnel gère les relations entre les employés et la direction, y compris la résolution des conflits et la négociation des contrats de travail. Ils peuvent également être impliqués dans la médiation des différends entre les employés."
+            },
+            {
+                "id": 6915,
+                "titre": "Responsable de la paie",
+                "description": "Cette personne est responsable de la gestion de la paie de tous les employés de l'entreprise. Ils s'assurent que tout le monde est payé correctement et à temps. Ils gèrent également les avantages sociaux et les déductions fiscales."
+            },
+            {
+                "id": 6916,
+                "titre": "Spécialiste en relations du travail",
+                "description": "Ce professionnel gère les relations entre l'entreprise et ses employés. Ils s'assurent que les droits des travailleurs sont respectés et ils aident à résoudre les conflits ou les problèmes qui peuvent survenir au travail."
+            }
+        ],
+        "softskills": [
+            "Communication",
+            "Empathie",
+            "Travail d'équipe",
+            "Gestion des conflits"
+        ],
+        "personnalites": [
+            "Sociable",
+            "Généreux",
+            "Charismatique"
+        ],
+        "avantages": [
+            "Développement personnel des employés",
+            "Rôles stratégiques dans l'entreprise",
+            "Opportunités de formation",
+            "Collaboration avec tous les départements",
+            "Impact sur la culture de l'entreprise"
+        ],
+        "inconvenients": [
+            "Gestion de conflits",
+            "Exigences réglementaires",
+            "Concurrence pour les talents",
+            "Rapidité d'évolution du marché du travail",
+            "Gestion de la confidentialité"
+        ],
+        "icon": "mdi mdi-badge-account-alert",
+        "recommandation": 57,
+        "isDone": false,
+        "isFav": false,
+        "compatibilite": 0
+    },
+    {
+        "id": 30,
+        "titre": "Art & Design",
+        "description": "Création artistique, Conception visuelle et design pour diverses industries",
+        "salaire": "4000 - 12000",
+        "metiers": [
+            {
+                "id": 6679,
+                "titre": "Designer Graphique",
+                "description": "Ces professionnels utilisent des logiciels de design pour créer des images et des concepts visuels pour des entreprises ou des clients individuels. Ils peuvent travailler sur divers projets, comme la conception de logos, de publicités, de sites web, de magazines et plus encore."
+            },
+            {
+                "id": 6680,
+                "titre": "Architecte d'Intérieur",
+                "description": "Ce métier implique la conception et l'organisation d'espaces intérieurs pour des maisons, des bureaux, des restaurants et d'autres lieux. Les architectes d'intérieur travaillent avec des clients pour comprendre leurs besoins et créer des espaces qui sont à la fois fonctionnels et esthétiquement agréables."
+            },
+            {
+                "id": 6681,
+                "titre": "Artiste Peintre",
+                "description": "C'est une personne qui crée des œuvres d'art en utilisant des pinceaux et des peintures. Les artistes peintres peuvent travailler sur différents supports comme la toile, le bois, le papier, etc. Ils peuvent créer des œuvres d'art pour des expositions dans des galeries ou pour des clients privés."
+            },
+            {
+                "id": 6682,
+                "titre": "Photographe",
+                "description": "Les photographes capturent des images pour une variété d'utilisations. Ils peuvent se spécialiser dans des domaines comme la photographie de mariage, de mode, de paysage, de produits, etc. Ils doivent aussi savoir utiliser des logiciels de retouche photo pour améliorer leurs images."
+            },
+            {
+                "id": 6683,
+                "titre": "Directeur Artistique",
+                "description": "Les directeurs artistiques sont responsables de la direction visuelle d'un projet. Ils peuvent travailler dans des industries comme la publicité, le cinéma, le théâtre, la mode, etc. Ils coordonnent les équipes de design et travaillent avec les clients pour s'assurer que le résultat final reflète la vision souhaitée."
+            },
+            {
+                "id": 6777,
+                "titre": "Artiste de Rue (Street Artist)",
+                "description": "Un artiste de rue utilise l'espace public pour exprimer son art. Cela peut prendre la forme de graffitis, de sculptures, de performances, etc. C'est une façon pour les artistes de toucher un large public en dehors des galeries traditionnelles."
+            },
+            {
+                "id": 6778,
+                "titre": "Photographe Professionnel",
+                "description": "Un photographe professionnel utilise son talent et son équipement pour capturer des images. Ces images peuvent être utilisées dans une variété de contextes, comme la publicité, le journalisme, les portraits, la mode ou la photographie d'art."
+            },
+            {
+                "id": 6779,
+                "titre": "Illustrateur",
+                "description": "Les illustrateurs créent des images pour une variété de médias, y compris les livres, les magazines, les sites web, et plus encore. Ils peuvent travailler avec des crayons, des pinceaux, des tablettes graphiques ou des logiciels de design pour créer leurs illustrations."
+            }
+        ],
+        "softskills": [
+            "Créativité",
+            "Communication interpersonnelle",
+            "Adaptabilité",
+            "Esprit d'équipe"
+        ],
+        "personnalites": [
+            "Créatif",
+            "Curieux",
+            "Ouvert d'esprit"
+        ],
+        "avantages": [
+            "Opportunité d'exprimer la créativité",
+            "Reconnaissance publique pour les œuvres d'art",
+            "Possibilité de freelance",
+            "Collaboration avec d'autres artistes",
+            "Évolution constante des tendances"
+        ],
+        "inconvenients": [
+            "Sensibilité aux critiques",
+            "Concurrence intense dans le design",
+            "Fluctuations des demandes artistiques",
+            "Risque d'obsolescence des compétences",
+            "Instabilité de l'emploi"
+        ],
+        "icon": "mdi mdi-palette",
+        "recommandation": 50,
+        "isDone": false,
+        "isFav": false,
+        "compatibilite": 0
+    },
+    {
+        "id": 32,
+        "titre": "Biologie & Agroalimentaire",
+        "description": "Étude des organismes vivants et application dans l'industrie alimentaire et agricole",
+        "salaire": "3000 - 7000",
+        "metiers": [
+            {
+                "id": 6689,
+                "titre": "Biologiste",
+                "description": "Un biologiste est un scientifique qui étudie les organismes vivants et leur relation avec l'environnement. Ils peuvent se spécialiser dans de nombreux domaines, comme la biologie marine, la génétique, l'écologie, etc. C'est un métier passionnant pour ceux qui sont curieux et qui aiment comprendre comment la vie fonctionne."
+            },
+            {
+                "id": 6690,
+                "titre": "Ingénieur agroalimentaire",
+                "description": "C'est un professionnel qui conçoit, développe et optimise les processus de fabrication, de conservation et de distribution des aliments. Ils travaillent pour améliorer la qualité et la sécurité des produits alimentaires."
+            },
+            {
+                "id": 6691,
+                "titre": "Technicien de laboratoire",
+                "description": "Ils réalisent des tests et des analyses dans des laboratoires pour aider les scientifiques dans leurs recherches. Ils peuvent travailler dans des domaines divers comme la biologie, la chimie, la microbiologie ou l'agroalimentaire."
+            },
+            {
+                "id": 6692,
+                "titre": "Agronome",
+                "description": "Un agronome est un expert dans l'étude et la gestion des sols et des cultures. Ils conseillent les agriculteurs sur la manière d'améliorer la productivité et la durabilité de leurs terres."
+            },
+            {
+                "id": 6693,
+                "titre": "Technologue en transformation alimentaire",
+                "description": "Ce professionnel travaille dans l'industrie agroalimentaire pour améliorer les méthodes de production et de conservation des aliments. Ils peuvent travailler sur l'élaboration de nouvelles recettes ou sur l'amélioration de la sécurité et de la qualité des aliments."
+            },
+            {
+                "id": 6784,
+                "titre": "Ingénieur agronome",
+                "description": "Un ingénieur agronome travaille à l'amélioration de l'efficacité et de la durabilité de l'agriculture. Il peut travailler sur des sujets allant de la protection des cultures contre les maladies et les ravageurs à l'amélioration des rendements et à la réduction de l'impact environnemental de l'agriculture."
+            },
+            {
+                "id": 6785,
+                "titre": "Technicien en analyses biomédicales",
+                "description": "Ce professionnel effectue des tests et des analyses sur des échantillons biologiques humains pour aider les médecins à diagnostiquer et à traiter les maladies. Ils peuvent travailler dans des laboratoires hospitaliers, des cliniques ou des laboratoires de recherche."
+            },
+            {
+                "id": 6786,
+                "titre": "Diététicien",
+                "description": "Le diététicien est un expert en nutrition. Il conseille les individus sur leur alimentation pour les aider à atteindre leurs objectifs de santé, que ce soit pour perdre du poids, gérer une maladie chronique ou améliorer leurs performances sportives. Il peut travailler dans des hôpitaux, des cliniques, des écoles ou avoir sa propre pratique privée."
+            },
+            {
+                "id": 6868,
+                "titre": "Technicien de laboratoire agroalimentaire",
+                "description": "Ce professionnel travaille dans le secteur de l'agroalimentaire, où il réalise des analyses et des contrôles pour assurer la qualité et la sécurité des produits alimentaires. Il doit avoir une bonne maîtrise de la chimie, de la biologie et des normes de sécurité alimentaire."
+            },
+            {
+                "id": 6869,
+                "titre": "Technologue alimentaire",
+                "description": "Un technologue alimentaire travaille sur le développement de nouveaux produits alimentaires et sur l'amélioration de ceux qui existent déjà. Il doit comprendre les ingrédients alimentaires, les processus de fabrication et les réglementations alimentaires."
+            },
+            {
+                "id": 6870,
+                "titre": "Oenologue",
+                "description": "Un œnologue est un spécialiste de la vinification. Il supervise le processus de production du vin, de la culture des raisins à la mise en bouteille du vin. Il doit avoir une bonne connaissance de la viticulture, de la chimie du vin et des techniques de vinification."
+            }
+        ],
+        "softskills": [
+            "Communication",
+            "Résolution de problèmes",
+            "Travail d'équipe",
+            "Empathie"
+        ],
+        "personnalites": [
+            "Curieux",
+            "Réfléchi",
+            "Persévérant"
+        ],
+        "avantages": [
+            "Contribution directe à la découverte scientifique",
+            "Opportunités pour des travaux de terrain",
+            "Engagement envers la durabilité",
+            "Travail souvent reconnu par la communauté",
+            "Possibilité d'innover dans l'agroalimentaire"
+        ],
+        "inconvenients": [
+            "Exigence de précision et de détail",
+            "Régulation stricte",
+            "Risque lié aux organismes génétiquement modifiés",
+            "Éthique concernant les tests",
+            "Concurrence dans la recherche"
+        ],
+        "icon": "mdi mdi-tractor",
+        "recommandation": 50,
+        "isDone": false,
+        "isFav": false,
+        "compatibilite": 0
+    },
+    {
+        "id": 36,
+        "titre": "Droit & Justice",
+        "description": "Pratique du droit, Défense des intérêts légaux et système judiciaire",
+        "salaire": "5000 - 22000",
+        "metiers": [
+            {
+                "id": 6709,
+                "titre": "Avocat",
+                "description": "Un avocat est un professionnel du droit qui conseille et représente ses clients dans des affaires juridiques. Ils peuvent se spécialiser dans différents domaines du droit, tels que le droit pénal, le droit de la famille, le droit des sociétés, etc. Leur travail consiste à comprendre les lois, à préparer des documents juridiques et à plaider en faveur de leurs clients devant les tribunaux."
+            },
+            {
+                "id": 6710,
+                "titre": "Juge",
+                "description": "Un juge est un professionnel du droit qui préside les affaires judiciaires dans un tribunal. Ils ont la responsabilité de veiller à ce que les lois soient respectées et appliquées de manière équitable. Ils écoutent les arguments des deux parties, examinent les preuves et rendent des jugements en se basant sur les lois et les règlements en vigueur."
+            },
+            {
+                "id": 6711,
+                "titre": "Notaire",
+                "description": "Un notaire est un professionnel du droit qui a pour mission de recevoir les actes et contrats auxquels les parties doivent ou veulent donner un caractère d'authenticité et de certitude. Il intervient dans plusieurs domaines"
+            },
+            {
+                "id": 6712,
+                "titre": "Huissier de justice",
+                "description": "Un huissier de justice est un officier ministériel qui a principalement une activité d'officier public et ministériel. Il est chargé de signifier les actes judiciaires et extra-judiciaires, d'exécuter les décisions de justice et de constater juridiquement les faits litigieux."
+            },
+            {
+                "id": 6713,
+                "titre": "Greffier",
+                "description": "Le greffier joue un rôle crucial dans le fonctionnement des tribunaux. Il est responsable de la gestion administrative du tribunal, de la tenue des registres, de la rédaction des procès-verbaux et de la conservation des preuves et des documents. En outre, ils assistent les juges lors des audiences en prenant des notes sur les procédures."
+            },
+            {
+                "id": 6795,
+                "titre": "Greffier de tribunal",
+                "description": "Un greffier de tribunal est une personne qui assiste les juges et les avocats dans les tribunaux. Ils sont responsables de la gestion et de l'organisation des documents juridiques, et peuvent également assurer des tâches administratives."
+            }
+        ],
+        "softskills": [
+            "Communication",
+            "Empathie",
+            "Résolution de problèmes",
+            "Gestion des conflits"
+        ],
+        "personnalites": [
+            "Réfléchi",
+            "Persévérant",
+            "Responsable"
+        ],
+        "avantages": [
+            "Défendre la justice",
+            "Rôles diversifiés",
+            "Prestige associé à certains rôles",
+            "Impact direct sur la vie des gens",
+            "Opportunité de spécialisation"
+        ],
+        "inconvenients": [
+            "Complexité des textes et réglementations",
+            "Responsabilité en cas d'erreurs",
+            "Pressions émotionnelles",
+            "Longues études",
+            "Gestion de conflits"
+        ],
+        "icon": "mdi mdi-scale-balance",
+        "recommandation": 50,
+        "isDone": false,
+        "isFav": false,
+        "compatibilite": 0
+    },
+    {
+        "id": 40,
+        "titre": "Energies renouvelables",
+        "description": "Utilisation et développement de sources d'énergie renouvelables comme le solaire et l'éolien",
+        "salaire": "6000 - 25000",
+        "metiers": [
+            {
+                "id": 6729,
+                "titre": "Ingénieur en énergie renouvelable",
+                "description": "C'est une personne qui conçoit, développe et teste des solutions pour générer de l'énergie à partir de ressources renouvelables comme le vent, le soleil ou l'eau. Ils cherchent à améliorer l'efficacité de ces systèmes d'énergie et à réduire leur impact sur l'environnement."
+            },
+            {
+                "id": 6730,
+                "titre": "Technicien en énergie solaire",
+                "description": "Ce professionnel installe, entretient et répare les panneaux solaires sur les toits des maisons et des bâtiments commerciaux. Il doit comprendre comment l'énergie solaire est convertie en électricité et comment connecter les panneaux solaires au réseau électrique."
+            },
+            {
+                "id": 6731,
+                "titre": "Consultant en énergie renouvelable",
+                "description": "Ces professionnels aident les entreprises à comprendre comment elles peuvent utiliser l'énergie de manière plus durable. Ils pourraient recommander des moyens d'économiser de l'énergie ou de passer à des sources d'énergie renouvelables."
+            },
+            {
+                "id": 6732,
+                "titre": "Chercheur en énergie renouvelable",
+                "description": "Ce sont des scientifiques qui travaillent à la recherche de nouvelles technologies ou méthodes pour produire de l'énergie de manière plus efficace et durable. Ils peuvent travailler dans des universités, des entreprises privées ou des organisations gouvernementales."
+            },
+            {
+                "id": 6733,
+                "titre": "Responsable de projet éolien",
+                "description": "Il supervise la construction et l'exploitation des parcs éoliens. Cela implique la planification du site, la coordination des équipes de construction et d'installation, et la gestion des problèmes environnementaux et communautaires."
+            },
+            {
+                "id": 6798,
+                "titre": "Ingénieur en énergies renouvelables",
+                "description": "C'est un professionnel qui conçoit, développe et évalue des systèmes et des équipements qui produisent de l'énergie à partir de sources renouvelables comme le soleil, le vent, l'eau ou les plantes. Il travaille souvent sur des projets d'innovation pour rendre ces sources d'énergie plus efficaces et plus accessibles."
+            },
+            {
+                "id": 6799,
+                "titre": "Spécialiste en énergie éolienne",
+                "description": "Ce professionnel travaille avec des éoliennes, des structures massives qui génèrent de l'électricité à partir du vent. Il peut s'occuper de leur installation, de leur maintenance ou de leur fonctionnement."
+            },
+            {
+                "id": 6800,
+                "titre": "Consultant en efficacité énergétique",
+                "description": "Ce professionnel aide les entreprises et les particuliers à réduire leur consommation d'énergie. Il peut suggérer des améliorations aux systèmes de chauffage et de refroidissement, conseiller sur l'isolation et l'éclairage, et promouvoir l'utilisation d'appareils économes en énergie."
+            },
+            {
+                "id": 6801,
+                "titre": "Chercheur en énergies renouvelables",
+                "description": "Le chercheur en énergies renouvelables étudie de nouvelles façons de produire de l'énergie à partir de sources renouvelables. Il peut travailler dans un laboratoire universitaire ou pour une entreprise privée. C'est un métier qui demande beaucoup de curiosité et de créativité."
+            },
+            {
+                "id": 6876,
+                "titre": "Chercheur en bioénergie",
+                "description": "Ce scientifique étudie comment les matières organiques, comme les plantes et les déchets, peuvent être converties en énergie. Il peut travailler dans un laboratoire ou sur le terrain, et ses découvertes peuvent aider à développer de nouvelles technologies d'énergie verte."
+            }
+        ],
+        "softskills": [
+            "Travail d'équipe",
+            "Flexibilité",
+            "Adaptabilité",
+            "Collaboration"
+        ],
+        "personnalites": [
+            "Curieux",
+            "Dynamique",
+            "Responsable"
+        ],
+        "avantages": [
+            "Opportunité d'innover dans l'énergie",
+            "Contribution à une planète plus verte",
+            "Rôles multidisciplinaires",
+            "Demande croissante",
+            "Subventions gouvernementales possibles"
+        ],
+        "inconvenients": [
+            "Dépendance aux politiques publiques",
+            "Fluctuations technologiques",
+            "Besoin d'investissements lourds",
+            "Risques environnementaux",
+            "Concurrence sur les innovations"
+        ],
+        "icon": "mdi mdi-solar-panel",
+        "recommandation": 50,
+        "isDone": false,
+        "isFav": false,
+        "compatibilite": 0
+    },
+    {
+        "id": 44,
+        "titre": "Informatique & Système d'information",
+        "description": "Conception, Développement et gestion des systèmes informatiques",
+        "salaire": "4500 - 25000",
+        "metiers": [
+            {
+                "id": 6749,
+                "titre": "Développeur Web",
+                "description": "Cette personne est en charge de la création et de la maintenance de sites web ou d'applications web. Elle utilise des langages de programmation comme HTML, CSS, JavaScript ou Python pour construire un site web à partir de zéro ou pour améliorer des sites existants."
+            },
+            {
+                "id": 6750,
+                "titre": "Administrateur Système",
+                "description": "Il est responsable de la mise en place, de l'entretien et du bon fonctionnement des systèmes informatiques au sein d'une entreprise. Il assure également la sécurité des données et résout les problèmes techniques que peuvent rencontrer les utilisateurs."
+            },
+            {
+                "id": 6751,
+                "titre": "Data Analyst",
+                "description": "Ce professionnel analyse les données massives (Big Data) pour aider les entreprises à prendre des décisions éclairées. Il utilise des outils statistiques et informatiques pour trouver des tendances, des modèles et des insights dans les ensembles de données."
+            },
+            {
+                "id": 6752,
+                "titre": "Ingénieur en sécurité informatique",
+                "description": "Se concentre sur la protection des systèmes informatiques contre les attaques et les violations de sécurité. Il met en place des mesures pour protéger les données et les systèmes informatiques."
+            },
+            {
+                "id": 6753,
+                "titre": "Architecte de l'information",
+                "description": "Il est responsable de la conception et de l'organisation de l'information sur les sites web et les applications pour que les utilisateurs puissent naviguer facilement et trouver ce qu'ils recherchent. Il travaille souvent en étroite collaboration avec les développeurs web et les designers."
+            },
+            {
+                "id": 6808,
+                "titre": "Développeur de logiciels",
+                "description": "Conçoit et crée des logiciels en utilisant des langages de programmation. Il est responsable de la mise en place des fonctionnalités d'un logiciel et de la résolution des problèmes qui peuvent survenir."
+            },
+            {
+                "id": 6809,
+                "titre": "Administrateur de système",
+                "description": "Ils s'assurent que les systèmes informatiques d'une entreprise fonctionnent correctement et en toute sécurité. Ils peuvent installer de nouveaux logiciels, effectuer des mises à jour, résoudre des problèmes techniques et faire en sorte que le système soit bien protégé contre les virus et les attaques informatiques."
+            },
+            {
+                "id": 6810,
+                "titre": "Analyste de données",
+                "description": "Ils analysent et interprètent des données complexes pour aider les entreprises à prendre des décisions. Ils peuvent travailler avec des données sur les ventes, le trafic web, les tendances du marché, etc."
+            },
+            {
+                "id": 6811,
+                "titre": "Architecte de système d'information",
+                "description": "Ils conçoivent et construisent des systèmes d'information pour les entreprises. Cela pourrait inclure la création d'un réseau interne pour une entreprise, la construction d'un système de gestion de la relation client ou la mise en place d'un système pour gérer les stocks et les ventes."
+            },
+            {
+                "id": 6886,
+                "titre": "Administrateur de systèmes",
+                "description": "Gère et maintient les systèmes informatiques d'une entreprise. Il veille à ce que tous les ordinateurs, serveurs et réseaux fonctionnent correctement et en toute sécurité."
+            },
+            {
+                "id": 6887,
+                "titre": "Analyste de systèmes d'information",
+                "description": "Analyse les besoins informatiques d'une entreprise et propose des solutions pour améliorer l'efficacité des systèmes existants et/ou en développer de nouveaux."
+            },
+            {
+                "id": 6888,
+                "titre": "Architecte de systèmes d'information",
+                "description": "Planifie et conçoit la structure des systèmes informatiques d'une entreprise, en tenant compte des besoins et des objectifs de l'entreprise. Il travaille souvent en étroite collaboration avec les utilisateurs finaux pour comprendre leurs besoins et créer des systèmes qui répondent à ces besoins."
+            }
+        ],
+        "softskills": [
+            "Résolution de problèmes",
+            "Travail d'équipe",
+            "Pensée critique",
+            "Adaptabilité"
+        ],
+        "personnalites": [
+            "Créatif",
+            "Curieux",
+            "Indépendant"
+        ],
+        "avantages": [
+            "Évolution constante des technologies",
+            "Demande élevée de compétences",
+            "Opportunité d'innovation",
+            "Travail en équipe ou indépendamment",
+            "Rémunération compétitive"
+        ],
+        "inconvenients": [
+            "Évolution technologique rapide",
+            "Risque de cyberattaques",
+            "Pressions pour la livraison",
+            "Travail devant l'écran prolongé",
+            "Dépendance aux outils"
+        ],
+        "icon": "mdi mdi-laptop",
+        "recommandation": 50,
+        "isDone": false,
+        "isFav": false,
+        "compatibilite": 0
+    },
+    {
+        "id": 45,
+        "titre": "Intelligence économique",
+        "description": "Collecte, Analyse et utilisation de données pour prendre des décisions économiques",
+        "salaire": "4000 - 12000",
+        "metiers": [
+            {
+                "id": 6754,
+                "titre": "Analyste en intelligence économique",
+                "description": "Ce professionnel recueille et analyse des informations sur des marchés spécifiques, des concurrents ou des tendances économiques pour aider les entreprises à prendre des décisions stratégiques. Il doit avoir de solides compétences analytiques et une bonne compréhension des affaires."
+            },
+            {
+                "id": 6755,
+                "titre": "Consultant en intelligence économique",
+                "description": "Ce professionnel aide les entreprises à comprendre leur position sur le marché, à identifier les opportunités de croissance et à développer des stratégies pour atteindre leurs objectifs d'affaires."
+            },
+            {
+                "id": 6756,
+                "titre": "Chargé de veille stratégique",
+                "description": "Ce professionnel surveille constamment l'environnement d'affaires de l'entreprise pour identifier toute tendance ou événement qui pourrait affecter la position de l'entreprise sur le marché. Il doit être capable de comprendre rapidement de nouvelles informations et de les analyser dans le contexte de l'entreprise."
+            },
+            {
+                "id": 6757,
+                "titre": "Responsable en intelligence économique",
+                "description": "Ce professionnel dirige les efforts d'une entreprise pour comprendre et répondre à son environnement économique. Il doit être capable de diriger une équipe, de développer une stratégie et de prendre des décisions basées sur une analyse approfondie."
+            },
+            {
+                "id": 6758,
+                "titre": "Data Analyst",
+                "description": "Le Data Analyst est un spécialiste de la manipulation et de l'analyse des données. Il extrait des informations utiles à partir de grandes quantités de données pour aider à la prise de décisions. Il peut travailler dans divers domaines, dont l'intelligence économique, où il aide à comprendre les tendances économiques et les comportements des consommateurs."
+            },
+            {
+                "id": 6812,
+                "titre": "Data Scientist en intelligence économique",
+                "description": "Ce professionnel utilise des méthodes statistiques et informatiques pour analyser les données économiques. Il doit être à l'aise avec les mathématiques et l'informatique, et être capable de trouver des modèles et des tendances dans des ensembles de données complexes."
+            },
+            {
+                "id": 6889,
+                "titre": "Analyste de renseignements d'affaires",
+                "description": "Ce professionnel recueille et analyse des informations sur les concurrents, les tendances du marché et les conditions économiques pour aider une entreprise à prendre des décisions éclairées."
+            },
+            {
+                "id": 6890,
+                "titre": "Spécialiste en veille stratégique",
+                "description": "Ce rôle consiste à surveiller en continu l'environnement externe d'une entreprise (concurrents, clients, technologies, etc.) pour anticiper les opportunités et les menaces et aider à la prise de décision."
+            },
+            {
+                "id": 6891,
+                "titre": "Analyste en cybersécurité",
+                "description": "Dans le contexte de l'intelligence économique, ce rôle est essentiel pour protéger les informations sensibles d'une entreprise contre les menaces de sécurité numérique. Ils surveillent, défendent et répondent à toute activité suspecte ou malveillante."
+            },
+            {
+                "id": 6892,
+                "titre": "Responsable de l'information commerciale",
+                "description": "Ce rôle est chargé de gérer toutes les informations commerciales importantes d'une entreprise. Ils définissent les stratégies d'information et de données, s'assurent que les données sont précises et accessibles, et mettent en place des systèmes pour protéger les informations sensibles."
+            }
+        ],
+        "softskills": [
+            "Résolution de problèmes",
+            "Leadership",
+            "Pensée critique",
+            "Prise de décision"
+        ],
+        "personnalites": [
+            "Curieux",
+            "Réfléchi",
+            "Persévérant"
+        ],
+        "avantages": [
+            "Impact sur les décisions stratégiques",
+            "Connaissance des marchés internationaux",
+            "Opportunité d'analyser la concurrence",
+            "Protection des actifs de l'entreprise",
+            "Formation continue"
+        ],
+        "inconvenients": [
+            "Dépendance à l'information",
+            "Risques liés à la désinformation",
+            "Nécessité d'analyse rapide",
+            "Exigences éthiques",
+            "Concurrence pour l'accès à l'information"
+        ],
+        "icon": "mdi mdi-podium-silver",
+        "recommandation": 50,
+        "isDone": false,
+        "isFav": false,
+        "compatibilite": 0
+    },
+    {
+        "id": 46,
+        "titre": "L'humanitaire",
+        "description": "Travaux et actions caritatives visant à aider les populations dans le besoin",
+        "salaire": "3000 - 7000",
+        "metiers": [
+            {
+                "id": 6759,
+                "titre": "Travailleur social",
+                "description": "Ce professionnel aide les individus, les familles et les communautés à résoudre leurs problèmes et à améliorer leur bien-être. Il peut travailler dans divers contextes, comme les écoles, les hôpitaux ou les agences de services sociaux."
+            },
+            {
+                "id": 6760,
+                "titre": "Médecin humanitaire",
+                "description": "Ces médecins travaillent généralement pour des organisations telles que Médecins Sans Frontières, fournissant des soins médicaux d'urgence dans des zones de conflit, après des catastrophes naturelles ou dans des régions où l'accès aux soins de santé est limité."
+            },
+            {
+                "id": 6761,
+                "titre": "Coordonnateur de projet humanitaire",
+                "description": "Ce rôle implique de planifier, de superviser et de gérer les projets humanitaires sur le terrain. Ils travaillent souvent pour des ONG ou des organisations internationales et s'assurent que l'aide atteint ceux qui en ont le plus besoin de manière efficace."
+            },
+            {
+                "id": 6762,
+                "titre": "Logisticien humanitaire",
+                "description": "Ils organisent le transport, la distribution et le stockage des fournitures et des équipements essentiels dans le cadre des opérations humanitaires. Ils jouent un rôle crucial pour s'assurer que l'aide parvient rapidement et efficacement aux personnes dans le besoin."
+            },
+            {
+                "id": 6763,
+                "titre": "Conseiller en Protection de l'Enfance",
+                "description": "Ce professionnel travaille pour assurer la sécurité et le bien-être des enfants dans des situations de crise. Ils peuvent travailler sur des questions telles que le rétablissement du lien familial, la protection contre les violences, l'éducation dans les situations d'urgence et l'assistance aux enfants non accompagnés ou séparés."
+            },
+            {
+                "id": 6813,
+                "titre": "Travailleur humanitaire",
+                "description": "Ces professionnels travaillent souvent sur le terrain, dans des zones de crise ou de conflit, pour fournir une aide directe aux personnes dans le besoin. Ils peuvent être impliqués dans la distribution de nourriture, d'eau, de médicaments et d'autres fournitures essentielles."
+            },
+            {
+                "id": 6814,
+                "titre": "Coordinateur de projet humanitaire",
+                "description": "Ils supervisent et coordonnent les projets humanitaires pour s'assurer qu'ils sont réalisés de manière efficace et selon les besoins spécifiques de la population cible. Ils travaillent avec des équipes sur le terrain, ainsi qu'avec des donateurs et des partenaires pour planifier et mettre en œuvre des projets."
+            },
+            {
+                "id": 6815,
+                "titre": "Conseiller en protection",
+                "description": "Ils sont responsables de la protection des personnes vulnérables, comme les enfants et les réfugiés. Ils travaillent pour prévenir et répondre à la violence, à l'exploitation et aux abus, et aident à trouver des solutions durables pour les personnes déplacées."
+            },
+            {
+                "id": 6816,
+                "titre": "Spécialiste en logistique humanitaire",
+                "description": "Ils s'occupent de l'organisation et de la gestion de l'acheminement des ressources (nourriture, eau, matériel médical, etc.) vers les zones où elles sont nécessaires. Ils travaillent en étroite collaboration avec divers partenaires pour s'assurer que les ressources atteignent les personnes dans le besoin de manière efficace et en temps voulu."
+            },
+            {
+                "id": 6893,
+                "titre": "Conseiller en droits de l'homme",
+                "description": "Ils travaillent pour s'assurer que les droits de l'homme sont respectés dans divers contextes, en particulier dans les zones de conflit ou post-conflit. Ils peuvent travailler pour des ONG, des organisations internationales ou des gouvernements, fournissant des conseils sur la manière de protéger et de promouvoir les droits de l'homme."
+            }
+        ],
+        "softskills": [
+            "Communication",
+            "Empathie",
+            "Travail d'équipe",
+            "Résilience"
+        ],
+        "personnalites": [
+            "Altruiste",
+            "Généreux",
+            "Tolérant"
+        ],
+        "avantages": [
+            "Contribution à une cause",
+            "Travail sur le terrain",
+            "Rencontre avec diverses cultures",
+            "Opportunités de formation",
+            "Impact direct sur la vie des gens"
+        ],
+        "inconvenients": [
+            "Exposition à des situations difficiles",
+            "Ressources souvent limitées",
+            "Risques sécuritaires selon les zones",
+            "Dépendance aux financements",
+            "Charge émotionnelle"
+        ],
+        "icon": "mdi mdi-handshake",
+        "recommandation": 50,
+        "isDone": false,
+        "isFav": false,
+        "compatibilite": 0
+    },
+    {
+        "id": 47,
+        "titre": "Marketing & Communication",
+        "description": "Création de stratégies de marketing et communication pour promouvoir des produits et services",
+        "salaire": "4500 - 18000",
+        "metiers": [
+            {
+                "id": 6764,
+                "titre": "Spécialiste en marketing numérique",
+                "description": "ce professionnel utilise Internet et d'autres technologies numériques pour aider les entreprises à promouvoir leurs produits ou services. Ils peuvent travailler sur des tâches allant de l'envoi d'e-mails promotionnels à la conception de campagnes publicitaires sur les réseaux sociaux."
+            },
+            {
+                "id": 6765,
+                "titre": "Responsable des relations publiques",
+                "description": "Le rôle de ce travailleur est de gérer l'image publique d'une entreprise ou d'une organisation. Ils pourraient organiser des événements, écrire des communiqués de presse, ou travailler avec des médias pour obtenir une couverture positive."
+            },
+            {
+                "id": 6766,
+                "titre": "Directeur de la communication",
+                "description": "Ce professionnel est en charge de toutes les communications internes et externes d'une entreprise. Ils pourraient travailler sur des stratégies de marque, de la publicité, des relations avec les médias, et s'assurer que tous les employés sont sur la même longueur d'onde en ce qui concerne les messages de l'entreprise."
+            },
+            {
+                "id": 6767,
+                "titre": "Chef de produit",
+                "description": "Le chef de produit est responsable de la gestion d'un produit spécifique d'une entreprise. Il supervise toutes les étapes du cycle de vie d'un produit, de la conception à la vente, en passant par la publicité et la promotion."
+            },
+            {
+                "id": 6768,
+                "titre": "Spécialiste en SEO (Search Engine Optimization)",
+                "description": "Le travail de ce professionnel est d'améliorer le classement d'un site web dans les résultats de recherche en ligne. Ils utilisent une variété de techniques, y compris l'optimisation des mots-clés, la création de liens et l'analyse des données de trafic web."
+            },
+            {
+                "id": 6817,
+                "titre": "Responsable Marketing",
+                "description": "Le responsable marketing élabore et met en œuvre les stratégies marketing d'une entreprise. Il surveille les tendances du marché, développe des campagnes publicitaires et aide à la promotion des produits ou services de l'entreprise."
+            },
+            {
+                "id": 6818,
+                "titre": "Chargé de Communication",
+                "description": "Il est responsable de la gestion et de la coordination de toutes les communications internes et externes, veillant à ce que son entreprise présente une image positive et cohérente. Cela peut impliquer la rédaction de communiqués de presse, la gestion des relations avec les médias et la planification d'événements."
+            },
+            {
+                "id": 6819,
+                "titre": "Social Media Manager",
+                "description": "Ce professionnel gère toutes les plateformes de médias sociaux d'une entreprise. Il crée et publie du contenu, interagit avec les clients et analyse les performances des publications. Son objectif est d'améliorer la présence en ligne de l'entreprise et d'engager son public cible."
+            },
+            {
+                "id": 6820,
+                "titre": "Spécialiste SEO (Search Engine Optimization)",
+                "description": "Le spécialiste SEO travaille pour améliorer le classement d'un site web dans les résultats de recherche en ligne. Il utilise différentes techniques pour rendre le site plus attrayant pour les moteurs de recherche, ce qui peut aider à attirer plus de visiteurs."
+            },
+            {
+                "id": 6894,
+                "titre": "Directeur Marketing",
+                "description": "Ce professionnel élabore et supervise la mise en œuvre de stratégies de marketing pour promouvoir une entreprise ou ses produits et services. Il est responsable de la gestion de l'image de marque et de l'augmentation de la visibilité de l'entreprise."
+            },
+            {
+                "id": 6895,
+                "titre": "Spécialiste en Référencement (SEO)",
+                "description": "Le spécialiste en SEO aide les entreprises à améliorer leur visibilité en ligne. Il utilise diverses techniques pour optimiser le classement des sites web dans les résultats des moteurs de recherche, ce qui peut augmenter le trafic sur le site et potentiellement les ventes."
+            },
+            {
+                "id": 6896,
+                "titre": "Chef de Produit (Product Manager)",
+                "description": "Il supervise le développement de produits de l'idée initiale à la mise sur le marché. Il travaille en étroite collaboration avec les équipes de production, de vente et de marketing pour s'assurer que le produit répond aux besoins des clients et atteint les objectifs de l'entreprise."
+            }
+        ],
+        "softskills": [
+            "Communication",
+            "Ambitieux",
+            "Collaboration",
+            "Orientation client"
+        ],
+        "personnalites": [
+            "Ambitieux",
+            "Dynamique",
+            "Optimiste"
+        ],
+        "avantages": [
+            "Créativité dans les campagnes",
+            "Compréhension approfondie du marché",
+            "Interaction avec divers départements",
+            "Opportunité de spécialisation",
+            "Impact direct sur la croissance de l'entreprise"
+        ],
+        "inconvenients": [
+            "Évolution rapide des tendances",
+            "Dépendance à la technologie",
+            "Concurrence intense",
+            "Risque d'obsolescence des campagnes",
+            "Gestion des retours négatifs"
+        ],
+        "icon": "mdi mdi-shopping",
+        "recommandation": 50,
+        "isDone": false,
+        "isFav": false,
+        "compatibilite": 0
+    },
+    {
+        "id": 52,
+        "titre": "Recherche & Développement",
+        "description": "Recherche scientifique et développement de nouvelles technologies et innovations",
+        "salaire": "5000 - 20000",
+        "metiers": [
+            {
+                "id": 6838,
+                "titre": "Chercheur Scientifique",
+                "description": "Les chercheurs scientifiques effectuent des expériences et des recherches approfondies dans leur domaine d'expertise pour approfondir nos connaissances et faire avancer la science. Par exemple, un chercheur en biologie pourrait étudier les cellules pour comprendre comment elles fonctionnent et comment elles peuvent être utilisées pour traiter les maladies."
+            },
+            {
+                "id": 6839,
+                "titre": "Ingénieur en R&D",
+                "description": "L'ingénieur en recherche et développement est responsable de la création de nouveaux produits et technologies. Ils utilisent leurs compétences en ingénierie pour concevoir, tester et perfectionner de nouveaux concepts, en travaillant souvent sur des projets d'innovation."
+            },
+            {
+                "id": 6840,
+                "titre": "Data Scientist",
+                "description": "Le data scientist est un expert en gestion et analyse de données. Il utilise des techniques statistiques et informatiques pour recueillir, analyser et interpréter de grandes quantités de données afin de résoudre des problèmes complexes."
+            },
+            {
+                "id": 6841,
+                "titre": "Bio-informaticien",
+                "description": "Le bio-informaticien est un spécialiste qui utilise l'informatique pour l'analyse et l'interprétation de données biologiques complexes. Il peut aider à la recherche de nouveaux médicaments ou à la compréhension des maladies génétiques."
+            },
+            {
+                "id": 6842,
+                "titre": "Technicien de laboratoire",
+                "description": "Le technicien de laboratoire assiste les scientifiques dans leurs recherches en effectuant des tests et des expériences. Ils peuvent travailler dans de nombreux domaines, comme la recherche médicale, l'environnement, ou la qualité des produits."
+            },
+            {
+                "id": 6909,
+                "titre": "Spécialiste en assurance qualité",
+                "description": "Le spécialiste en assurance qualité travaille à garantir que les produits ou services d'une entreprise respectent certains critères de qualité et de performance. Ils conçoivent des tests, analysent les résultats et recommandent des améliorations."
+            },
+            {
+                "id": 6910,
+                "titre": "Bioinformaticien",
+                "description": "Le bioinformaticien utilise l'informatique et les mathématiques pour comprendre et analyser les données biologiques, comme l'ADN. Ce travail peut aider à comprendre les maladies et à développer de nouveaux médicaments."
+            }
+        ],
+        "softskills": [
+            "Créativité",
+            "Résolution de problèmes",
+            "Pensée critique",
+            "Empathie"
+        ],
+        "personnalites": [
+            "Créatif",
+            "Curieux",
+            "Indépendant"
+        ],
+        "avantages": [
+            "Frontière de la technologie et de l'innovation",
+            "Opportunités de brevets",
+            "Collaboration internationale",
+            "Accès à des outils de pointe",
+            "Rémunération compétitive"
+        ],
+        "inconvenients": [
+            "Pression pour innover",
+            "Compétition pour les financements",
+            "Risques liés à l'expérimentation",
+            "Longues périodes avant les retours sur investissement",
+            "Gestion de la propriété intellectuelle"
+        ],
+        "icon": "mdi mdi-book-search",
+        "recommandation": 50,
+        "isDone": false,
+        "isFav": false,
+        "compatibilite": 0
+    },
+    {
+        "id": 53,
+        "titre": "Réseau & Télécom",
+        "description": "Gestion des réseaux de communication et des systèmes de télécommunications",
+        "salaire": "4000 - 20000",
+        "metiers": [
+            {
+                "id": 6843,
+                "titre": "Ingénieur Réseau",
+                "description": "C'est une personne qui conçoit, met en œuvre et gère les réseaux d'une entreprise, y compris les réseaux locaux (LAN) et les réseaux étendus (WAN). Il s'assure que ces systèmes fonctionnent correctement et sont sécurisés."
+            },
+            {
+                "id": 6844,
+                "titre": "Technicien Télécom",
+                "description": "Il installe, entretient et répare les équipements de télécommunication. Cela peut impliquer de travailler avec des téléphones, des lignes Internet, des systèmes de câblage et d'autres technologies de communication."
+            },
+            {
+                "id": 6845,
+                "titre": "Administrateur Système",
+                "description": "Il est responsable de la configuration, de l'entretien et de la gestion globale des systèmes informatiques d'une entreprise. Ce rôle peut impliquer de travailler avec des réseaux, des serveurs et des logiciels."
+            },
+            {
+                "id": 6846,
+                "titre": "Architecte Réseau",
+                "description": "Il conçoit et crée des réseaux de communication pour les entreprises. Cela peut impliquer de travailler sur des projets d'infrastructure à grande échelle et de s'assurer que les réseaux sont sécurisés et efficaces."
+            },
+            {
+                "id": 6847,
+                "titre": "Consultant en Sécurité Réseau",
+                "description": "Il aide les entreprises à protéger leurs systèmes de communication contre les menaces de sécurité. Cela peut impliquer d'évaluer les risques de sécurité, de concevoir des systèmes de sécurité et de répondre aux incidents de sécurité."
+            },
+            {
+                "id": 6911,
+                "titre": "Technicien en télécommunications",
+                "description": "Ce professionnel installe, entretient et répare les équipements et les systèmes de télécommunication. Il travaille souvent avec des téléphones, des systèmes de câblage, des réseaux Internet et d'autres types de systèmes de communication."
+            },
+            {
+                "id": 6912,
+                "titre": "Architecte de Réseau",
+                "description": "C'est un expert qui crée des plans détaillés des réseaux de communication. Il conçoit et construit des réseaux de données, détermine où placer le matériel et comment connecter les différents composants."
+            },
+            {
+                "id": 6913,
+                "titre": "Administrateur de Système",
+                "description": "C'est la personne qui assure le bon fonctionnement et l'entretien des systèmes informatiques d'une entreprise. Elle installe, configure, met à jour et répare les systèmes et le logiciel sur les serveurs et autres équipements informatiques."
+            },
+            {
+                "id": 6914,
+                "titre": "Spécialiste en sécurité des réseaux",
+                "description": "Il a pour mission de protéger les données et les systèmes d'information d'une entreprise. Il surveille les réseaux pour détecter les activités suspectes, met en place des mesures pour prévenir les attaques et réagit aux violations de la sécurité."
+            }
+        ],
+        "softskills": [
+            "Résolution de problèmes",
+            "Travail d'équipe",
+            "Pensée critique",
+            "Adaptabilité"
+        ],
+        "personnalites": [
+            "Curieux",
+            "Réfléchi",
+            "Indépendant"
+        ],
+        "avantages": [
+            "Conception de réseaux robustes",
+            "Rôle crucial dans la communication",
+            "Formation continue",
+            "Opportunité d'évoluer vers des rôles de leadership",
+            "Travail sur des projets d'envergure"
+        ],
+        "inconvenients": [
+            "Dépendance à la technologie",
+            "Concurrence intense",
+            "Rapidité d'obsolescence",
+            "Gestion des ressources et capacités",
+            "Risques de cyberattaques"
+        ],
+        "icon": "mdi mdi-broadcast",
+        "recommandation": 50,
+        "isDone": false,
+        "isFav": false,
+        "compatibilite": 0
+    },
+    {
+        "id": 55,
+        "titre": "Sciences de la Santé",
+        "description": "Étude et pratique des sciences médicales et de la santé",
+        "salaire": "4500 - 20000",
+        "metiers": [
+            {
+                "id": 6853,
+                "titre": "Médecin",
+                "description": "Un médecin est un professionnel de la santé qui diagnostique et traite les maladies. Il peut se spécialiser dans de nombreux domaines, comme la cardiologie (cœur), la neurologie (cerveau et système nerveux), ou la pédiatrie (soins aux enfants), parmi tant d'autres."
+            },
+            {
+                "id": 6854,
+                "titre": "Infirmier(ère)",
+                "description": "Les infirmiers travaillent directement avec les patients pour fournir des soins de base et surveiller leur santé. Ils sont souvent responsables de l'administration des médicaments, de l'assistance aux médecins lors des interventions et de l'éducation des patients sur leur état de santé."
+            },
+            {
+                "id": 6855,
+                "titre": "Pharmacien(ne)",
+                "description": "Les pharmaciens sont des experts en médicaments. Ils conseillent les médecins et les patients sur les dosages, les interactions et les effets secondaires des médicaments. Ils peuvent travailler en pharmacie, à l'hôpital, ou dans le domaine de la recherche."
+            },
+            {
+                "id": 6856,
+                "titre": "Technologue en radiologie",
+                "description": "Le technologue en radiologie est un professionnel de la santé qui utilise des machines à rayons X, des scanners et d'autres technologies pour créer des images du corps humain. Ces images aident les médecins à diagnostiquer et à traiter les maladies."
+            },
+            {
+                "id": 6857,
+                "titre": "Diététicien(ne)",
+                "description": "Un(e) diététicien(ne) est un expert en nutrition qui aide les gens à comprendre comment la nourriture affecte leur santé. Ils peuvent aider à planifier des repas, à gérer des conditions de santé liées à l'alimentation, comme le diabète ou les maladies cardiaques, et à promouvoir des habitudes alimentaires saines."
+            },
+            {
+                "id": 6917,
+                "titre": "Médecin Généraliste",
+                "description": "Un médecin généraliste est souvent le premier contact pour les patients qui ont des problèmes de santé. Ils effectuent des examens, posent des questions sur les symptômes, prescrivent des médicaments et orientent les patients vers des spécialistes si nécessaire."
+            },
+            {
+                "id": 6918,
+                "titre": "Technicien de Laboratoire Médical",
+                "description": "Ces professionnels effectuent des tests de laboratoire pour aider à diagnostiquer et à traiter les maladies. Ils peuvent examiner des échantillons de sang, d'urine ou de tissus et utiliser des équipements sophistiqués pour analyser les résultats."
+            },
+            {
+                "id": 6919,
+                "titre": "Nutritionniste/Diététicien(ne)",
+                "description": "Ces experts en nutrition aident les gens à comprendre comment leur alimentation affecte leur santé. Ils peuvent créer des plans de repas personnalisés, aider à gérer des conditions de santé liées à l'alimentation comme le diabète, et éduquer les patients sur la façon de faire des choix alimentaires sains."
+            }
+        ],
+        "softskills": [
+            "Communication",
+            "Empathie",
+            "Travail d'équipe",
+            "Gestion du stress"
+        ],
+        "personnalites": [
+            "Persévérant",
+            "Réfléchi",
+            "Responsable"
+        ],
+        "avantages": [
+            "Contribution à la santé publique",
+            "Rôles diversifiés",
+            "Reconnaissance professionnelle",
+            "Opportunités de spécialisation",
+            "Interaction avec des patients"
+        ],
+        "inconvenients": [
+            "Horaires irréguliers",
+            "Exposition à des maladies",
+            "Charge émotionnelle",
+            "Pression des patients",
+            "Régulations et conformités strictes"
+        ],
+        "icon": "mdi mdi-heart-circle",
+        "recommandation": 50,
+        "isDone": false,
+        "isFav": false,
+        "compatibilite": 0
+    },
+    {
+        "id": 56,
+        "titre": "Sport",
+        "description": "Promotion de l'activité physique, Entraînement sportif et gestion d'événements sportifs",
+        "salaire": "3000 - 7000",
+        "metiers": [
+            {
+                "id": 6858,
+                "titre": "Entraîneur sportif",
+                "description": "Il est responsable de la formation et du développement des compétences des athlètes. Il planifie et organise des séances d'entraînement, donne des conseils sur la nutrition et les exercices, et prépare les athlètes pour les compétitions."
+            },
+            {
+                "id": 6859,
+                "titre": "Agent sportif",
+                "description": "Il représente les athlètes dans les négociations avec les clubs et autres organisations sportives, notamment en ce qui concerne les contrats et les accords de parrainage. Il doit également gérer les relations publiques et les questions juridiques pour ses clients."
+            },
+            {
+                "id": 6860,
+                "titre": "Physiothérapeute Sportif",
+                "description": "Un physiothérapeute sportif travaille avec les athlètes pour prévenir, diagnostiquer et traiter les blessures liées au sport. Ils utilisent une variété de techniques, y compris la thérapie manuelle, l'exercice et l'éducation pour aider les athlètes à se remettre et à retourner à leur sport."
+            },
+            {
+                "id": 6861,
+                "titre": "Journaliste sportif",
+                "description": "Il couvre les événements sportifs, écrit des articles sur les compétitions et les athlètes, et peut également commenter les événements en direct. Il doit avoir une bonne connaissance des sports qu'il couvre et doit être capable d'écrire de manière claire et intéressante."
+            },
+            {
+                "id": 6862,
+                "titre": "Gestionnaire d'Équipe Sportive",
+                "description": "Un gestionnaire d'équipe sportive est responsable de la gestion globale d'une équipe sportive. Cela peut inclure la sélection des joueurs, la gestion du personnel d'entraînement, la planification des matchs et l'organisation des déplacements de l'équipe."
+            },
+            {
+                "id": 6920,
+                "titre": "Kinésithérapeute sportif",
+                "description": "Il travaille avec des athlètes pour prévenir et traiter les blessures liées au sport. Il peut utiliser diverses techniques, comme la physiothérapie et le massage, pour aider les athlètes à se remettre de leurs blessures et à améliorer leurs performances."
+            },
+            {
+                "id": 6921,
+                "titre": "Gestionnaire d'événements sportifs",
+                "description": "Il est responsable de l'organisation et de la coordination des événements sportifs, comme les matchs et les tournois. Il doit gérer de nombreux aspects, comme la logistique, le personnel, le budget et la promotion de l'événement."
+            }
+        ],
+        "softskills": [
+            "Travail d'équipe",
+            "Leadership",
+            "Flexibilité",
+            "Gestion du stress"
+        ],
+        "personnalites": [
+            "Dynamique",
+            "Ambitieux",
+            "Optimiste"
+        ],
+        "avantages": [
+            "Passion pour le sport",
+            "Opportunités de sponsorisation",
+            "Interaction avec des athlètes de haut niveau",
+            "Événements internationaux",
+            "Contribution à la santé et au bien-être"
+        ],
+        "inconvenients": [
+            "Risque de blessures",
+            "Pressions pour les performances",
+            "Vie privée exposée",
+            "Carrière souvent courte",
+            "Dépendance à la condition physique"
+        ],
+        "icon": "mdi mdi-run-fast",
+        "recommandation": 50,
+        "isDone": false,
+        "isFav": false,
+        "compatibilite": 0
+    }
+];
+
+   // Function to create HTML blocks
+   function createJobBlocks() {
+    const jobsContainer = document.getElementById('jobsContainer');
+
+    jobData.forEach(job => {
+      const jobBlock = document.createElement('div');
+      jobBlock.classList.add('job-block');
+
+      const title = document.createElement('h2');
+      title.textContent = job.titre;
+
+      const description = document.createElement('p');
+      description.textContent = job.description;
+
+      const salary = document.createElement('p');
+      salary.textContent = `Salary Range: ${job.salaire}`;
+
+      const metiers = document.createElement('ul');
+      metiers.classList.add('metier-list');
+      job.metiers.forEach(metier => {
+        const metierItem = document.createElement('li');
+        metierItem.textContent = `${metier.titre}: ${metier.description}`;
+        metiers.appendChild(metierItem);
+      });
+
+      const softskills = document.createElement('p');
+      softskills.classList.add('label1');
+      softskills.textContent = 'Soft Skills: ' + job.softskills.join(', ');
+
+      const personnalites = document.createElement('p');
+      personnalites.classList.add('label2');
+      personnalites.textContent = 'Personnalites: ' + job.personnalites.join(', ');
+
+      const avantages = document.createElement('p');
+      avantages.classList.add('label3');
+      avantages.textContent = 'Avantages: ' + job.avantages.join(', ');
+
+      const inconvenients = document.createElement('p');
+      inconvenients.classList.add('label4');
+      inconvenients.textContent = 'Inconvenients: ' + job.inconvenients.join(', ');
+
+      // Append more details as needed
+
+      jobBlock.appendChild(title);
+      jobBlock.appendChild(description);
+      jobBlock.appendChild(salary);
+      jobBlock.appendChild(metiers);
+      jobBlock.appendChild(softskills);
+      jobBlock.appendChild(personnalites);
+      jobBlock.appendChild(avantages);
+      jobBlock.appendChild(inconvenients);
+
+      jobsContainer.appendChild(jobBlock);
+
+      // Add event listener to show/hide metiers list on title click
+      title.addEventListener('click', () => {
+        const metierList = jobBlock.querySelector('.metier-list');
+        const label1 = jobBlock.querySelector('.label1');
+        const label2 = jobBlock.querySelector('.label2');
+        const label3 = jobBlock.querySelector('.label3');
+        const label4 = jobBlock.querySelector('.label4');
+        metierList.style.display = metierList.style.display === 'none' ? 'block' : 'none';
+        label1.style.display = label1.style.display === 'none' ? 'block' : 'none';
+        label2.style.display = label2.style.display === 'none' ? 'block' : 'none';
+        label3.style.display = label3.style.display === 'none' ? 'block' : 'none';
+        label4.style.display = label4.style.display === 'none' ? 'block' : 'none';
+      });
+    });
+  }
+
+  // Call the function to create job blocks
+  createJobBlocks();
+
+
+
+    function search() {
+        // Get the search term from the input
+        var searchTerm = document.getElementById('searchInput').value;
+
+        // Check if the search term is longer than 4 characters
+        if (searchTerm.length > 3) {
+            // Remove previous highlights
+            removeHighlights();
+
+            // Create a regular expression with the search term and the 'g' flag for global search
+            var regex = new RegExp(searchTerm, 'gi');
+
+            // Get the page content
+            var pageContent = document.body.innerHTML;
+
+            // Replace the matched text with the highlighted version
+            var highlightedContent = pageContent.replace(regex, function (match) {
+                return '<span class="highlight">' + match + '</span>';
+            });
+
+            // Update the page content with the highlighted version
+            document.body.innerHTML = highlightedContent;
+        }
+    }
+
+    function removeHighlights() {
+        var highlights = document.querySelectorAll('.highlight');
+
+        // Iterate over the highlighted elements and remove the 'highlight' class
+        highlights.forEach(function (element) {
+            element.outerHTML = element.innerHTML; // Replace the span with its content
+        });
+    }
+
+</script>
+
+</html>

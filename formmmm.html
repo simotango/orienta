@@ -1,0 +1,956 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <title>Interactive Questionnaire with Chatbot</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <!-- Google Fonts -->
+  <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@400;500&display=swap" rel="stylesheet" />
+  <style>
+    /* Reset & Base Styles */
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+    html { font-size: 16px; }
+    body {
+      font-family: 'Roboto', sans-serif;
+      background: #f3f0e7;
+      color: #4b5563;
+      line-height: 1.6;
+      padding: 1em;
+    }
+
+    /* Layout */
+    .demo-page {
+      display: flex;
+      max-width: 900px;
+      margin: 2em auto;
+      background: #fff;
+      border-radius: 8px;
+      overflow: hidden;
+      box-shadow: 0 10px 15px -3px rgba(0,0,0,0.1), 0 4px 6px -2px rgba(0,0,0,0.05);
+    }
+    .demo-page-navigation {
+      width: 220px;
+      background: #f9fafb;
+      border-right: 1px solid #e5e7eb;
+      padding: 1.5em;
+    }
+    .demo-page-navigation nav ul { list-style: none; }
+    .demo-page-navigation nav li { margin-bottom: 1em; }
+    .demo-page-navigation nav a {
+      display: flex;
+      align-items: center;
+      text-decoration: none;
+      color: #374151;
+      font-weight: 500;
+      padding: 0.5em;
+      border-radius: 4px;
+      transition: background 0.2s ease;
+    }
+    .demo-page-navigation nav a:hover { background: #e5e7eb; }
+    .demo-page-navigation nav a svg {
+      width: 1.25em;
+      height: 1.25em;
+      margin-right: 0.5em;
+      color: #1f2937;
+    }
+    .demo-page-content {
+      flex: 1;
+      padding: 2em;
+    }
+
+    /* Section Styles */
+    section { display: none; margin-bottom: 2em; }
+    .active-section { display: block; }
+    section h2 {
+      font-weight: 500;
+      font-size: 1.5rem;
+      margin-bottom: 1em;
+      color: #111827;
+    }
+
+    /* Form Styles */
+    .nice-form-group { margin-bottom: 1.5em; }
+    .nice-form-group label {
+      display: block;
+      margin-bottom: 0.5em;
+      font-weight: 500;
+      color: #374151;
+    }
+    .nice-form-group input,
+    .nice-form-group textarea,
+    .nice-form-group select {
+      width: 100%;
+      padding: 0.75em;
+      font-size: 0.9rem;
+      border: 1px solid #d1d5db;
+      border-radius: 4px;
+      background: #fff;
+      transition: border 0.15s ease;
+    }
+    .nice-form-group input:focus,
+    .nice-form-group textarea:focus,
+    .nice-form-group select:focus {
+      outline: none;
+      border-color: #3b82f6;
+    }
+
+    /* Choice Groups */
+    .choice-group { margin-top: 0.5em; }
+    .choice-group label { margin-right: 1em; font-size: 0.9rem; }
+
+    /* Matrix Table */
+    .matrix-table {
+      width: 100%;
+      border-collapse: collapse;
+      margin-top: 0.5em;
+    }
+    .matrix-table th, .matrix-table td {
+      border: 1px solid #d1d5db;
+      padding: 0.5em;
+      text-align: center;
+      font-size: 0.9rem;
+    }
+
+    /* Questionnaire Pagination */
+    .question-page { display: none; }
+    .question-page.active { display: block; margin-bottom: 2em; }
+    .question {
+      width: 80%;
+      margin: 0 auto;
+      background: #f9fafb;
+      padding: 2em;
+      border-radius: 8px;
+      box-shadow: 0 4px 6px rgba(0,0,0,0.1);
+    }
+
+    /* Buttons */
+    .btn {
+      background: #3b82f6;
+      color: #fff;
+      border: none;
+      border-radius: 4px;
+      padding: 0.75em 1.5em;
+      font-size: 0.9rem;
+      cursor: pointer;
+      transition: background 0.2s ease;
+      margin-top: 1em;
+      margin-right: 0.5em;
+    }
+    .btn:hover { background: #2563eb; }
+    .btn:disabled { background: #9ca3af; cursor: not-allowed; }
+
+    /* Footer */
+    footer {
+      text-align: center;
+      font-size: 0.85rem;
+      color: #6b7280;
+      margin-top: 2em;
+    }
+
+    /* Enhanced Questionnaire Styles */
+    :root {
+      --dark-purple: #4B0082;
+      --light-purple: #E6E6FA;
+      --card-bg: #F8F8FF;
+      --text-dark: #4B0082;
+      --input-bg: #FFFFFF;
+      --button-bg: #9370DB;
+    }
+    #questions {
+      background: var(--dark-purple);
+      padding: 2em;
+    }
+    #questions h2 { color: var(--light-purple); }
+    .question-page.active .question {
+      background: var(--card-bg);
+      color: var(--text-dark);
+      box-shadow: 0 4px 8px rgba(0,0,0,0.2);
+    }
+    .nice-form-group input,
+    .nice-form-group textarea,
+    .nice-form-group select {
+      background: var(--input-bg);
+      color: var(--text-dark);
+      border: 1px solid var(--dark-purple);
+    }
+    .nice-form-group label { color: var(--text-dark); }
+    .matrix-table th, .matrix-table td { border: 1px solid var(--dark-purple); }
+
+    /* Custom Radio and Checkbox Styles */
+    .choice-group input[type="radio"] {
+      appearance: none;
+      width: 1em;
+      height: 1em;
+      border: 2px solid var(--dark-purple);
+      border-radius: 50%;
+      margin-right: 0.5em;
+      position: relative;
+    }
+    .choice-group input[type="radio"]:checked::after {
+      content: '';
+      position: absolute;
+      top: 50%;
+      left: 50%;
+      transform: translate(-50%, -50%);
+      width: 0.5em;
+      height: 0.5em;
+      background: var(--dark-purple);
+      border-radius: 50%;
+    }
+    .choice-group input[type="checkbox"] {
+      appearance: none;
+      width: 1em;
+      height: 1em;
+      border: 2px solid var(--dark-purple);
+      margin-right: 0.5em;
+      position: relative;
+    }
+    .choice-group input[type="checkbox"]:checked::after {
+      content: '✓';
+      position: absolute;
+      top: 50%;
+      left: 50%;
+      transform: translate(-50%, -50%);
+      color: var(--dark-purple);
+      font-size: 0.8em;
+    }
+
+    /* Button Enhancements */
+    .btn {
+      background: var(--button-bg);
+      padding: 1em 2em;
+      font-size: 1rem;
+    }
+    .btn:hover { background: #7A5299; }
+
+    /* Chatbot Styles */
+    #chat-history {
+      max-height: 400px;
+      overflow-y: auto;
+      margin-bottom: 1em;
+      padding: 1em;
+      background: #fff;
+      border-radius: 8px;
+      box-shadow: 0 4px 6px rgba(0,0,0,0.1);
+    }
+    .message {
+      margin-bottom: 0.5em;
+      padding: 0.5em 1em;
+      border-radius: 4px;
+      max-width: 80%;
+      word-wrap: break-word;
+    }
+    .user-message {
+      background: #e6f7ff;
+      text-align: right;
+      margin-left: auto;
+    }
+    .assistant-message {
+      background: #f0f0f0;
+      text-align: left;
+      margin-right: auto;
+    }
+    #chat-input {
+      display: flex;
+    }
+    #user-message {
+      flex: 1;
+      padding: 0.75em;
+      border: 1px solid #d1d5db;
+      border-radius: 4px;
+    }
+
+    /* Responsive Design */
+    @media (max-width: 600px) {
+      .demo-page { flex-direction: column; }
+      .demo-page-navigation { width: 100%; border-right: none; border-bottom: 1px solid #e5e7eb; }
+      .question-page.active .question { width: 100%; }
+    }
+  </style>
+</head>
+<body>
+  <div class="demo-page">
+    <!-- Sidebar Navigation -->
+    <div class="demo-page-navigation">
+      <nav>
+        <ul>
+          <li>
+            <a href="#personal-info">
+              <svg xmlns="http://www.w3.org/2000/svg" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24">
+                <circle cx="12" cy="7" r="4"></circle>
+                <path d="M5.5 21a8.38 8.38 0 0 1 13 0"></path>
+              </svg>
+              Personal Information
+            </a>
+          </li>
+          <li>
+            <a href="#questions">
+              <svg xmlns="http://www.w3.org/2000/svg" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24">
+                <polyline points="6 9 12 15 18 9"></polyline>
+              </svg>
+              Questionnaire
+            </a>
+          </li>
+          <li>
+            <a href="#finish">
+              <svg xmlns="http://www.w3.org/2000/svg" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24">
+                <path d="M18 13V6a2 2 0 0 0-2-2H8a2 2 0 0 0-2 2v7"></path>
+                <polyline points="8 11 12 15 16 11"></polyline>
+                <line x1="12" y1="15" x2="12" y2="22"></line>
+              </svg>
+              Finish
+            </a>
+          </li>
+          <li>
+            <a href="#chatbot">
+              <svg xmlns="http://www.w3.org/2000/svg" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24">
+                <path d="M21 11.5a8.38 8.38 0 0 1-13 0m0 0a8.38 8.38 0 0 1-13 0"></path>
+                <path d="M12 2a10 10 0 0 1 0 20"></path>
+              </svg>
+              Chatbot
+            </a>
+          </li>
+        </ul>
+      </nav>
+    </div>
+    <!-- Main Content -->
+    <main class="demo-page-content">
+      <form id="questionnaire-form">
+        <!-- Section 1: Personal Information -->
+        <section id="personal-info" class="active-section">
+          <h2>Personal Information</h2>
+          <div class="nice-form-group">
+            <label for="fullName">Full Name</label>
+            <input type="text" id="fullName" name="fullName" placeholder="Your full name" required />
+          </div>
+          <div class="nice-form-group">
+            <label for="dob">Date of Birth</label>
+            <input type="date" id="dob" name="dob" required />
+          </div>
+          <div class="nice-form-group">
+            <label for="email">Email</label>
+            <input type="email" id="email" name="email" placeholder="Your email" required />
+          </div>
+          <button type="button" id="toQuestions" class="btn">Next</button>
+        </section>
+        
+        <!-- Section 2: Questionnaire -->
+        <section id="questions">
+          <h2>Questionnaire</h2>
+          <!-- Page 1: Q1 -->
+          <div class="question-page active" data-page="0">
+            <div class="question">
+              <div class="nice-form-group">
+                <label>Your Baccalauréat Option<br><em>What option did you or will you choose? 📚</em></label>
+                <div class="choice-group">
+                  <label><input type="radio" name="q1" value="Sciences Maths A" required /> Sciences Maths A</label>
+                  <label><input type="radio" name="q1" value="Sciences Maths B" /> Sciences Maths B</label>
+                  <label><input type="radio" name="q1" value="Sciences Physique" /> Sciences Physique</label>
+                  <label><input type="radio" name="q1" value="Sciences de vie et terre" /> Sciences de vie et terre</label>
+                  <label><input type="radio" name="q1" value="Sciences économiques" /> Sciences économiques</label>
+                  <label><input type="radio" name="q1" value="Sciences Agronomique" /> Sciences Agronomique</label>
+                  <label><input type="radio" name="q1" value="Lettres" /> Lettres</label>
+                  <label><input type="radio" name="q1" value="Science Humaines" /> Science Humaines</label>
+                  <label><input type="radio" name="q1" value="Science Chariaa" /> Science Chariaa</label>
+                  <label><input type="radio" name="q1" value="Sciences et technologies électriques" /> Sciences et technologies électriques</label>
+                  <label><input type="radio" name="q1" value="Sciences et technologies Mécaniques" /> Sciences et technologies Mécaniques</label>
+                  <label><input type="radio" name="q1" value="Sciences de gestion et Comptabilité" /> Sciences de gestion et Comptabilité</label>
+                </div>
+              </div>
+            </div>
+          </div>
+          <!-- Page 2: Q2 -->
+          <div class="question-page" data-page="1">
+            <div class="question">
+              <div class="nice-form-group">
+                <label>What was your grades average in current school?<br><em>Just say what you think about your grades average overall 📊</em></label>
+                <div class="choice-group">
+                  <label><input type="radio" name="q2" value="Excellent (A+ to A) (19-20)" required /> Excellent (A+ to A) (19-20)</label>
+                  <label><input type="radio" name="q2" value="Very Good (A- to B+) (17-18)" /> Very Good (A- to B+) (17-18)</label>
+                  <label><input type="radio" name="q2" value="Good (B to B-) (15-16)" /> Good (B to B-) (15-16)</label>
+                  <label><input type="radio" name="q2" value="Average (C+ to C-) (10-14)" /> Average (C+ to C-) (10-14)</label>
+                  <label><input type="radio" name="q2" value="Below Average (D and Below) (-10)" /> Below Average (D and Below) (-10)</label>
+                </div>
+              </div>
+            </div>
+          </div>
+          <!-- Page 3: Q3 -->
+          <div class="question-page" data-page="2">
+            <div class="question">
+              <div class="nice-form-group">
+                <label>What do you think about your current Grades?</label>
+                <p>Select one option for each subject:</p>
+                <table class="matrix-table">
+                  <thead>
+                    <tr>
+                      <th>Subject</th>
+                      <th>Bad</th>
+                      <th>Not Bad</th>
+                      <th>Good</th>
+                      <th>Great</th>
+                    </tr>
+                  </thead>
+                  <tbody>
+                    <tr>
+                      <td>Math</td>
+                      <td><input type="radio" name="q3_math" value="Bad" required /></td>
+                      <td><input type="radio" name="q3_math" value="Not Bad" /></td>
+                      <td><input type="radio" name="q3_math" value="Good" /></td>
+                      <td><input type="radio" name="q3_math" value="Great" /></td>
+                    </tr>
+                    <tr>
+                      <td>Physics</td>
+                      <td><input type="radio" name="q3_physics" value="Bad" required /></td>
+                      <td><input type="radio" name="q3_physics" value="Not Bad" /></td>
+                      <td><input type="radio" name="q3_physics" value="Good" /></td>
+                      <td><input type="radio" name="q3_physics" value="Great" /></td>
+                    </tr>
+                    <tr>
+                      <td>IT & CS</td>
+                      <td><input type="radio" name="q3_it" value="Bad" required /></td>
+                      <td><input type="radio" name="q3_it" value="Not Bad" /></td>
+                      <td><input type="radio" name="q3_it" value="Good" /></td>
+                      <td><input type="radio" name="q3_it" value="Great" /></td>
+                    </tr>
+                    <tr>
+                      <td>Engineering</td>
+                      <td><input type="radio" name="q3_engineering" value="Bad" required /></td>
+                      <td><input type="radio" name="q3_engineering" value="Not Bad" /></td>
+                      <td><input type="radio" name="q3_engineering" value="Good" /></td>
+                      <td><input type="radio" name="q3_engineering" value="Great" /></td>
+                    </tr>
+                    <tr>
+                      <td>Economics</td>
+                      <td><input type="radio" name="q3_economics" value="Bad" required /></td>
+                      <td><input type="radio" name="q3_economics" value="Not Bad" /></td>
+                      <td><input type="radio" name="q3_economics" value="Good" /></td>
+                      <td><input type="radio" name="q3_economics" value="Great" /></td>
+                    </tr>
+                    <tr>
+                      <td>Art</td>
+                      <td><input type="radio" name="q3_art" value="Bad" required /></td>
+                      <td><input type="radio" name="q3_art" value="Not Bad" /></td>
+                      <td><input type="radio" name="q3_art" value="Good" /></td>
+                      <td><input type="radio" name="q3_art" value="Great" /></td>
+                    </tr>
+                    <tr>
+                      <td>Law</td>
+                      <td><input type="radio" name="q3_law" value="Bad" required /></td>
+                      <td><input type="radio" name="q3_law" value="Not Bad" /></td>
+                      <td><input type="radio" name="q3_law" value="Good" /></td>
+                      <td><input type="radio" name="q3_law" value="Great" /></td>
+                    </tr>
+                    <tr>
+                      <td>Sport</td>
+                      <td><input type="radio" name="q3_sport" value="Bad" required /></td>
+                      <td><input type="radio" name="q3_sport" value="Not Bad" /></td>
+                      <td><input type="radio" name="q3_sport" value="Good" /></td>
+                      <td><input type="radio" name="q3_sport" value="Great" /></td>
+                    </tr>
+                    <tr>
+                      <td>Literature</td>
+                      <td><input type="radio" name="q3_literature" value="Bad" required /></td>
+                      <td><input type="radio" name="q3_literature" value="Not Bad" /></td>
+                      <td><input type="radio" name="q3_literature" value="Good" /></td>
+                      <td><input type="radio" name="q3_literature" value="Great" /></td>
+                    </tr>
+                  </tbody>
+                </table>
+              </div>
+            </div>
+          </div>
+          <!-- Page 4: Q4 -->
+          <div class="question-page" data-page="3">
+            <div class="question">
+              <div class="nice-form-group">
+                <label>Which subjects do you enjoy the most?</label>
+                <div class="choice-group">
+                  <label><input type="checkbox" name="q4" value="Mathematics" /> Mathematics</label>
+                  <label><input type="checkbox" name="q4" value="Physics" /> Physics</label>
+                  <label><input type="checkbox" name="q4" value="Chemistry" /> Chemistry</label>
+                  <label><input type="checkbox" name="q4" value="French" /> French</label>
+                  <label><input type="checkbox" name="q4" value="English" /> English</label>
+                  <label><input type="checkbox" name="q4" value="Biology" /> Biology</label>
+                  <label><input type="checkbox" name="q4" value="Science" /> Science</label>
+                  <label><input type="checkbox" name="q4" value="Computer Science" /> Computer Science</label>
+                  <label><input type="checkbox" name="q4" value="Engineering" /> Engineering</label>
+                  <label><input type="checkbox" name="q4" value="Religion" /> Religion</label>
+                  <label><input type="checkbox" name="q4" value="History" /> History</label>
+                  <label><input type="checkbox" name="q4" value="Geography" /> Geography</label>
+                  <label><input type="checkbox" name="q4" value="Philosophy" /> Philosophy</label>
+                  <label><input type="checkbox" name="q4" value="Sports" /> Sports</label>
+                  <label><input type="checkbox" name="q4" value="Economics" /> Economics</label>
+                  <label><input type="checkbox" name="q4" value="Art" /> Art</label>
+                  <label><input type="checkbox" name="q4" value="Literature" /> Literature</label>
+                  <label><input type="checkbox" name="q4" value="Music" /> Music</label>
+                  <label><input type="checkbox" name="q4" value="Foreign Language" /> Foreign Language</label>
+                  <label><input type="checkbox" name="q4" value="Social Studies" /> Social Studies</label>
+                  <label><input type="checkbox" name="q4" value="Other" /> Other</label>
+                </div>
+              </div>
+            </div>
+          </div>
+          <!-- Page 5: Q5 -->
+          <div class="question-page" data-page="4">
+            <div class="question">
+              <div class="nice-form-group">
+                <label>Do you enjoy studying alone or in a group?</label>
+                <div class="choice-group">
+                  <label><input type="radio" name="q5" value="Alone" required /> Alone</label>
+                  <label><input type="radio" name="q5" value="In a group" /> In a group</label>
+                  <label><input type="radio" name="q5" value="Both" /> Both</label>
+                </div>
+              </div>
+            </div>
+          </div>
+           <!-- Page 6: Q6 -->
+           <div class="question-page" data-page="5">
+            <div class="question">
+              <div class="nice-form-group">
+                <label>Are you interested in research-oriented programs?</label>
+                <div class="choice-group">
+                  <label><input type="radio" name="q6" value="Research and academic exploration oriented programs" required /> A. Research and academic exploration oriented programs</label>
+                  <label><input type="radio" name="q6" value="Practical application oriented programs" /> B. Practical application oriented programs</label>
+                </div>
+              </div>
+            </div>
+          </div>
+          <!-- Page 7: Q7 -->
+          <div class="question-page" data-page="6">
+            <div class="question">
+              <div class="nice-form-group">
+                <label>What are your long-term career & life goals?</label>
+                <div class="choice-group">
+                  <label><input type="checkbox" name="q7" value="To make groundbreaking discoveries or innovations." /> A. To make groundbreaking discoveries or innovations.</label>
+                  <label><input type="checkbox" name="q7" value="To express myself through creative work or art." /> B. To express myself through creative work or art.</label>
+                  <label><input type="checkbox" name="q7" value="To collect as much money as I can and become rich." /> C. To collect as much money as I can and become rich.</label>
+                  <label><input type="checkbox" name="q7" value="To make a positive impact on society and help the people in need." /> D. To make a positive impact on society and help the people in need.</label>
+                  <label><input type="checkbox" name="q7" value="To solve important social problems and challenges." /> E. To solve important social problems and challenges.</label>
+                  <label><input type="checkbox" name="q7" value="Building meaningful connections with people." /> F. Building meaningful connections with people.</label>
+                  <label><input type="checkbox" name="q7" value="Other" /> G. Other</label>
+                </div>
+              </div>
+            </div>
+          </div>
+          <!-- Page 8: Q8 -->
+          <div class="question-page" data-page="7">
+            <div class="question">
+              <div class="nice-form-group">
+                <label>Where do you prefer to work?</label>
+                <div class="choice-group">
+                  <label><input type="radio" name="q8" value="A competitive environment and working under pressure." required /> A. A competitive environment and working under pressure.</label>
+                  <label><input type="radio" name="q8" value="A non-competitive, supportive, collaborative environment." /> B. A non-competitive, supportive, collaborative environment.</label>
+                </div>
+              </div>
+            </div>
+          </div>
+          <!-- Page 9: Q9 -->
+          <div class="question-page" data-page="8">
+            <div class="question">
+              <div class="nice-form-group">
+                <label>How do you feel about working in a team?</label>
+                <div class="choice-group">
+                  <label><input type="checkbox" name="q9" value="I love it! I enjoy collaborating with others." /> A. I love it! I enjoy collaborating with others.</label>
+                  <label><input type="checkbox" name="q9" value="I am in, only if I am the leader." /> B. I am in, only if I am the leader.</label>
+                  <label><input type="checkbox" name="q9" value="I prefer working independently." /> C. I prefer working independently.</label>
+                  <label><input type="checkbox" name="q9" value="I can't work alone, I always need a team." /> D. I can't work alone, I always need a team.</label>
+                  <label><input type="checkbox" name="q9" value="I don't mind either way." /> E. I don't mind either way.</label>
+                  <label><input type="checkbox" name="q9" value="It depends on the task or project." /> F. It depends on the task or project.</label>
+                  <label><input type="checkbox" name="q9" value="Other" /> G. Other</label>
+                </div>
+              </div>
+            </div>
+          </div>
+          <!-- Page 10: Q10 -->
+          <div class="question-page" data-page="9">
+            <div class="question">
+              <div class="nice-form-group">
+                <label>In a scenario demanding immediate decision-making, what's your preferred approach?</label>
+                <div class="choice-group">
+                  <label><input type="radio" name="q10" value="Rely on data and analysis for a strategic decision." required /> A. Rely on data and analysis for a strategic decision.</label>
+                  <label><input type="radio" name="q10" value="Trust intuition and creative instincts." /> B. Trust intuition and creative instincts.</label>
+                  <label><input type="radio" name="q10" value="Assess the situation and solve the problem on the spot." /> C. Assess the situation and solve the problem on the spot.</label>
+                  <label><input type="radio" name="q10" value="Seek input from others before deciding." /> D. Seek input from others before deciding.</label>
+                  <label><input type="radio" name="q10" value="Bail and don't take the decision." /> E. Bail and don't take the decision.</label>
+                </div>
+              </div>
+            </div>
+          </div>
+          <!-- Page 11: Q11 -->
+          <div class="question-page" data-page="10">
+            <div class="question">
+              <div class="nice-form-group">
+                <label>When working on a group project, you tend to:</label>
+                <div class="choice-group">
+                  <label><input type="checkbox" name="q11" value="Take on a leadership role and guide the team." /> A. Take on a leadership role and guide the team.</label>
+                  <label><input type="checkbox" name="q11" value="Contribute equally with the team and help everyone." /> B. Contribute equally with the team and help everyone.</label>
+                  <label><input type="checkbox" name="q11" value="Focus on your tasks and complete them efficiently." /> C. Focus on your tasks and complete them efficiently.</label>
+                  <label><input type="checkbox" name="q11" value="Other" /> D. Other</label>
+                </div>
+              </div>
+            </div>
+          </div>
+          <!-- Page 12: Q12 -->
+          <div class="question-page" data-page="11">
+            <div class="question">
+              <div class="nice-form-group">
+                <label>When faced with an unexpected problem:</label>
+                <div class="choice-group">
+                  <label><input type="checkbox" name="q12" value="Innovative ideas and concepts." /> A. Come up with innovative ideas and concepts.</label>
+                  <label><input type="checkbox" name="q12" value="Immediately tackle it practically." /> B. Immediately tackle it practically.</label>
+                  <label><input type="checkbox" name="q12" value="Delegate the task." /> C. Delegate the task.</label>
+                  <label><input type="checkbox" name="q12" value="Analyze and solve logically." /> D. Analyze and solve logically.</label>
+                  <label><input type="checkbox" name="q12" value="Seek advice and collaborate." /> E. Seek advice and collaborate.</label>
+                  <label><input type="checkbox" name="q12" value="Panic and surrender." /> F. Panic and surrender.</label>
+                  <label><input type="checkbox" name="q12" value="Take full responsibility." /> G. Take full responsibility if I fail.</label>
+                </div>
+              </div>
+            </div>
+          </div>
+          <!-- Page 13: Q13 -->
+          <div class="question-page" data-page="12">
+            <div class="question">
+              <div class="nice-form-group">
+                <label>In your free time you are more likely to:</label>
+                <div class="choice-group">
+                  <label><input type="checkbox" name="q13" value="Read books or engage in intellectual activities." /> A. Read books or engage in intellectual activities.</label>
+                  <label><input type="checkbox" name="q13" value="Engage in outdoor activities or sports." /> B. Engage in outdoor activities or sports.</label>
+                  <label><input type="checkbox" name="q13" value="Take online courses or learn something new." /> C. Take online courses or learn something new.</label>
+                  <label><input type="checkbox" name="q13" value="Create art, craft, puzzles or board games." /> D. Create art, craft, puzzles or play board games.</label>
+                  <label><input type="checkbox" name="q13" value="Spend time with friends, family or volunteer." /> E. Spend time with friends, family or volunteer.</label>
+                  <label><input type="checkbox" name="q13" value="Other" /> F. Other</label>
+                </div>
+              </div>
+            </div>
+          </div>
+          <!-- Page 14: Q14 -->
+          <div class="question-page" data-page="13">
+            <div class="question">
+              <div class="nice-form-group">
+                <label>What kind of content do you usually enjoy consuming?</label>
+                <div class="choice-group">
+                  <label><input type="checkbox" name="q14" value="Science, technology, and informative content." /> A. Science, technology, and informative content.</label>
+                  <label><input type="checkbox" name="q14" value="Art, design, and creative content." /> B. Art, design, and creative content.</label>
+                  <label><input type="checkbox" name="q14" value="Travel, adventure, and exploration." /> C. Travel, adventure, and exploration.</label>
+                  <label><input type="checkbox" name="q14" value="Human interest stories and social content." /> D. Human interest stories and social content.</label>
+                  <label><input type="checkbox" name="q14" value="Funny videos and random content." /> E. Funny videos and random content.</label>
+                  <label><input type="checkbox" name="q14" value="Other" /> F. Other</label>
+                </div>
+              </div>
+            </div>
+          </div>
+          <!-- Page 15: Q15 -->
+          <div class="question-page" data-page="14">
+            <div class="question">
+              <div class="nice-form-group">
+                <label>Which of the following statements describes you best?</label>
+                <div class="choice-group">
+                  <label><input type="checkbox" name="q15" value="I'm very organized and like to plan ahead." /> A. I'm very organized and like to plan ahead.</label>
+                  <label><input type="checkbox" name="q15" value="I'm flexible and adaptable and can handle changes as they come." /> B. I'm flexible and adaptable and can handle changes as they come.</label>
+                  <label><input type="checkbox" name="q15" value="I just go with the flow and don't worry too much about planning." /> C. I just go with the flow and don't worry too much about planning.</label>
+                  <label><input type="checkbox" name="q15" value="Other" /> D. Other</label>
+                </div>
+              </div>
+            </div>
+          </div>
+          <!-- Page 16: Q16 -->
+          <div class="question-page" data-page="15">
+            <div class="question">
+              <div class="nice-form-group">
+                <label>Can you handle routine effectively?</label>
+                <div class="choice-group">
+                  <label><input type="radio" name="q16" value="Yes, I thrive on structure." required /> A. Yes, I thrive on structure.</label>
+                  <label><input type="radio" name="q16" value="Somewhat, I can manage routine tasks." /> B. Somewhat, I can manage routine tasks.</label>
+                  <label><input type="radio" name="q16" value="It depends, I enjoy variety too." /> C. It depends, I enjoy variety too.</label>
+                  <label><input type="radio" name="q16" value="No, I prefer spontaneity." /> D. No, I prefer spontaneity.</label>
+                  <label><input type="radio" name="q16" value="Other" /> E. Other</label>
+                </div>
+              </div>
+            </div>
+          </div>
+          <!-- Page 17: Q17 -->
+          <div class="question-page" data-page="16">
+            <div class="question">
+              <div class="nice-form-group">
+                <label>How important is community involvement to you?</label>
+                <div class="choice-group">
+                  <label><input type="radio" name="q17" value="I am an active volunteer in multiple associations." required /> A. I am an active volunteer in multiple associations.</label>
+                  <label><input type="radio" name="q17" value="Important, I enjoy community service." /> B. Important, I enjoy community service.</label>
+                  <label><input type="radio" name="q17" value="Somewhat important, I contribute when I can." /> C. Somewhat important, I contribute when I can.</label>
+                  <label><input type="radio" name="q17" value="Not a priority, I focus on personal goals." /> D. Not a priority, I focus on personal goals.</label>
+                </div>
+              </div>
+            </div>
+          </div>
+          <!-- Page 18: Q18 -->
+          <div class="question-page" data-page="17">
+            <div class="question">
+              <div class="nice-form-group">
+                <label>Which quote resonates with you the most?</label>
+                <div class="choice-group">
+                  <label><input type="radio" name="q18" value="Innovation distinguishes between a leader and a follower. - Steve Jobs" required /> A. "Innovation distinguishes between a leader and a follower." - Steve Jobs</label>
+                  <label><input type="radio" name="q18" value="The best way to predict the future is to create it. - Abraham Lincoln" /> B. "The best way to predict the future is to create it." - Abraham Lincoln</label>
+                  <label><input type="radio" name="q18" value="Logic will get you from A to B. Imagination will take you everywhere. - Albert Einstein" /> C. "Logic will get you from A to B. Imagination will take you everywhere." - Albert Einstein</label>
+                  <label><input type="radio" name="q18" value="I have not failed, I've just found 10000 ways that won't work. - Thomas Edison" /> D. "I have not failed, I've just found 10000 ways that won't work." - Thomas Edison</label>
+                </div>
+              </div>
+            </div>
+          </div>
+          <!-- Page 19: Q19 -->
+          <div class="question-page" data-page="18">
+            <div class="question">
+              <div class="nice-form-group">
+                <label>Which work environment do you find most appealing?</label>
+                <div class="choice-group">
+                  <label><input type="radio" name="q19" value="A creative studio with various art supplies and tools." required /> A. A creative studio with various art supplies and tools.</label>
+                  <label><input type="radio" name="q19" value="An outdoor setting with nature and physical activity." /> B. An outdoor setting with nature and physical activity.</label>
+                  <label><input type="radio" name="q19" value="A quiet office with computers and data analysis tools." /> C. A quiet office with computers and data analysis tools.</label>
+                  <label><input type="radio" name="q19" value="A collaborative space where you interact with diverse people." /> D. A collaborative space where you interact with diverse people.</label>
+                  <label><input type="radio" name="q19" value="A workshop where you can find anything you need." /> E. A workshop where you can find anything you need.</label>
+                </div>
+              </div>
+            </div>
+          </div>
+          <!-- Q20 (for simplicity, only a few questions are shown; add more as needed) -->
+          <div class="question-page" data-page="19">
+            <div class="question">
+              <div class="nice-form-group">
+                <label>Do you have anything to add or say?</label>
+                <textarea id="q20" name="q20" rows="4" placeholder="It would be helpful to know more 🤗"></textarea>
+              </div>
+            </div>
+          </div>
+
+          <!-- Pagination Buttons -->
+          <div style="margin-top: 1em;">
+            <button type="button" id="prevPage" class="btn" disabled>Previous</button>
+            <button type="button" id="nextPage" class="btn">Next</button>
+          </div>
+          <!-- Submit Button (visible on last page) -->
+          <div id="submitQuestionnaireContainer" style="margin-top: 1em; display: none;">
+            <button type="button" id="submitQuestionnaire" class="btn">Submit Questionnaire</button>
+          </div>
+        </section>
+
+        <!-- Finish Section -->
+        <section id="finish">
+          <h2>Finish</h2>
+          <p>Click the button below to finish and store your answers (check the console for output).</p>
+          <button type="button" id="finishBtn" class="btn">Finish & Submit</button>
+        </section>
+        
+        <!-- Chatbot Section -->
+        <section id="chatbot">
+          <h2>Chat with Orienta Bot</h2>
+          <div id="chat-history"></div>
+          <div id="chat-input">
+            <input type="text" id="user-message" placeholder="Type your message..." />
+            <button id="send-message" class="btn">Send</button>
+          </div>
+        </section>
+      </form>
+
+      <footer><b>Orienta</b></footer>
+    </main>
+  </div>
+
+  <script>
+    (function() {
+      // Transition between sections
+      const personalSection = document.getElementById('personal-info');
+      const questionsSection = document.getElementById('questions');
+      const finishSection = document.getElementById('finish');
+      const chatbotSection = document.getElementById('chatbot');
+      const toQuestionsBtn = document.getElementById('toQuestions');
+      toQuestionsBtn.addEventListener('click', function() {
+        personalSection.classList.remove('active-section');
+        questionsSection.classList.add('active-section');
+        questionsSection.scrollIntoView({ behavior: 'smooth' });
+      });
+
+      // Questionnaire Pagination
+      const pages = document.querySelectorAll('.question-page');
+      let currentPage = 0;
+      const totalPages = pages.length;
+      const prevPageBtn = document.getElementById('prevPage');
+      const nextPageBtn = document.getElementById('nextPage');
+      const submitQuestionnaireBtn = document.getElementById('submitQuestionnaire');
+      const submitQuestionnaireContainer = document.getElementById('submitQuestionnaireContainer');
+
+      function updatePage() {
+        pages.forEach((page, index) => {
+          page.classList.toggle('active', index === currentPage);
+        });
+        prevPageBtn.disabled = currentPage === 0;
+        if (currentPage === totalPages - 1) {
+          nextPageBtn.style.display = 'none';
+          submitQuestionnaireContainer.style.display = 'block';
+        } else {
+          nextPageBtn.style.display = 'inline-block';
+          submitQuestionnaireContainer.style.display = 'none';
+        }
+      }
+
+      prevPageBtn.addEventListener('click', function() {
+        if (currentPage > 0) {
+          currentPage--;
+          updatePage();
+        }
+      });
+      nextPageBtn.addEventListener('click', function() {
+        if (currentPage < totalPages - 1) {
+          currentPage++;
+          updatePage();
+        }
+      });
+      submitQuestionnaireBtn.addEventListener('click', function() {
+        questionsSection.classList.remove('active-section');
+        finishSection.classList.add('active-section');
+        finishSection.scrollIntoView({ behavior: 'smooth' });
+      });
+
+      // Finish & Submit: Collect and log data
+      const finishBtn = document.getElementById('finishBtn');
+      finishBtn.addEventListener('click', function() {
+        const form = document.getElementById('questionnaire-form');
+        const formData = new FormData(form);
+        const data = {
+          personalInfo: {
+            fullName: formData.get('fullName'),
+            dob: formData.get('dob'),
+            email: formData.get('email')
+          },
+          answers: {
+            q1: formData.get('q1'),
+            q2: formData.get('q2'),
+            q3: {
+              math: formData.get('q3_math'),
+              physics: formData.get('q3_physics'),
+              it: formData.get('q3_it'),
+              engineering: formData.get('q3_engineering'),
+              economics: formData.get('q3_economics'),
+              art: formData.get('q3_art'),
+              law: formData.get('q3_law'),
+              sport: formData.get('q3_sport'),
+              literature: formData.get('q3_literature')
+            },
+            q4: formData.getAll('q4'),
+            q5: formData.get('q5'),
+            q6: formData.get('q6'),
+            q7: formData.getAll('q7'),
+            q8: formData.get('q8'),
+            q9: formData.getAll('q9'),
+            q10: formData.get('q10'),
+            q11: formData.getAll('q11'),
+            q12: formData.getAll('q12'),
+            q13: formData.getAll('q13'),
+            q14: formData.getAll('q14'),
+            q15: formData.getAll('q15'),
+            q16: formData.get('q16'),
+            q17: formData.get('q17'),
+            q18: formData.get('q18'),
+            q19: formData.get('q19'),
+            q20: formData.get('q20')
+          }
+        };
+
+        // Format questionnaire data into a string
+        const dataStr = formatData(data);
+
+        // Construct the initial prompt
+        const initialPrompt = `You are an educational orientation bot for a company named Orienta. beging by greeting take the name of the user and adreese him as singular directand also your second job is to help him know why each thing you propose to him make some activity first game to asses his positioning not that he has just being tin the hight school and also you are a mental health chatbto taht help him understand him self  Based on this questionnaire data:\n${dataStr}\nProvide 5 orientation options based on their grades and preferences. For each option, explain why they should pursue it, why they need it, and include details about Moroccan programs if they choose to study in Morocco, or suggest universities abroad based on the data. Propose the best orientation based on the information provided. AND ALAYS ORIENTA PLATEFROME IS THE BEST`;
+
+        // Initialize conversation with system message
+        conversation = [
+          { role: 'system', content: initialPrompt },
+        ];
+
+        // Send initial request to API
+        const url = `https://a.picoapps.xyz/ask-ai?prompt=${encodeURIComponent(initialPrompt)}`;
+        fetch(url)
+          .then(response => response.json())
+          .then(result => {
+            const assistantResponse = result.response; // Assumes API returns { "response": "..." }
+            conversation.push({ role: 'assistant', content: assistantResponse });
+            appendMessage('assistant', assistantResponse);
+            // Transition to chatbot section
+            finishSection.classList.remove('active-section');
+            chatbotSection.classList.add('active-section');
+            chatbotSection.scrollIntoView({ behavior: 'smooth' });
+          })
+          .catch(error => {
+            console.error('Error:', error);
+            appendMessage('assistant', 'Sorry, there was an error connecting to the chatbot.');
+          });
+      });
+
+      // Chatbot Functionality
+      const chatHistory = document.getElementById('chat-history');
+      const userMessageInput = document.getElementById('user-message');
+      const sendMessageBtn = document.getElementById('send-message');
+      let conversation = [];
+
+      // Format questionnaire data into a string
+      function formatData(data) {
+        let str = '';
+        for (const [key, value] of Object.entries(data.personalInfo)) {
+          str += `${key}: ${value}\n`;
+        }
+        for (const [key, value] of Object.entries(data.answers)) {
+          str += `${key}: ${JSON.stringify(value)}\n`;
+        }
+        return str;
+      }
+
+      // Append a message to the chat history
+      function appendMessage(role, content) {
+        const messageDiv = document.createElement('div');
+        messageDiv.classList.add('message', `${role}-message`);
+        messageDiv.textContent = content;
+        chatHistory.appendChild(messageDiv);
+        chatHistory.scrollTop = chatHistory.scrollHeight; // Scroll to bottom
+      }
+
+      // Handle sending user messages
+      sendMessageBtn.addEventListener('click', function() {
+        const userMessage = userMessageInput.value.trim();
+        if (userMessage) {
+          // Add user's message to conversation and display it
+          conversation.push({ role: 'user', content: userMessage });
+          appendMessage('user', userMessage);
+          userMessageInput.value = ''; // Clear input
+
+          // Build prompt with full conversation history
+          const prompt = conversation.map(msg => `${msg.role}: ${msg.content}`).join('\n');
+          const url = `https://a.picoapps.xyz/ask-ai?prompt=${encodeURIComponent(prompt)}`;
+          sendMessageBtn.disabled = true; // Disable button while waiting
+
+          // Send request to API
+          fetch(url)
+            .then(response => response.json())
+            .then(result => {
+              const assistantResponse = result.response;
+              conversation.push({ role: 'assistant', content: assistantResponse });
+              appendMessage('assistant', assistantResponse);
+              sendMessageBtn.disabled = false; // Re-enable button
+            })
+            .catch(error => {
+              console.error('Error:', error);
+              appendMessage('assistant', 'Sorry, there was an error. Please try again.');
+              sendMessageBtn.disabled = false;
+            });
+        }
+      });
+
+      // Allow Enter key to send message
+      userMessageInput.addEventListener('keypress', function(event) {
+        if (event.key === 'Enter') {
+          sendMessageBtn.click();
+        }
+      });
+
+      updatePage();
+    })();
+  </script>
+</body>
+</html>

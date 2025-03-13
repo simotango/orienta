@@ -1,0 +1,245 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <title>Orienta</title>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="description" content="">
+  <meta name="keywords" content="">
+  <link rel="shortcut icon" type="x-icon" href="assets\img\logo-blanc-1024x428[1].webp">
+  <link rel="stylesheet" href="assets/css/main.css">
+</head>
+
+
+<body style="  overflow-y: auto !important;
+-webkit-overflow-scrolling: touch !important;
+touch-action: auto !important;">
+
+  <!-- notification for small viewports and landscape oriented smartphones -->
+  <div class="device-notification">
+    <a class="device-notification--logo" href="index.html">
+      <img src="assets/img/logo-blanc-1024x428[1].webp" alt="RoadMapper" style="width: 67px; height: 58px;">
+      <p>orienta </p>
+    </a>
+    <p class="device-notification--message">Orienta have so much to offer that we must request you orient your device to
+      portrait or find a larger screen. You won't be disappointed.</p>
+  </div>
+
+  <div class="perspective effect-rotate-left">
+    <button id="back-button">
+      <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="white" width="24px" height="24px">
+        <path d="M0 0h24v24H0z" fill="none" />
+        <path d="M19 12l-7 7-1.41-1.41L16.17 13H4v-2h12.17l-4.58-4.59L12 5l7 7z" />
+      </svg>
+    </button>
+    <div class="container">
+      <div class="outer-nav--return"></div>
+      <div id="viewport" class="l-viewport">
+        <div class="l-wrapper">
+          <header class="header">
+            <br> <br> <br>
+            <a class="header--logo" href="index.html">
+              <img src="assets/img/logo-blanc-1024x428[1].webp" alt="RoadMapper" style="width: 67px; height: 58px;">
+              <p>Orienta</p>
+            </a>
+
+          </header>
+         
+          <ul class="l-main-content main-content">
+
+            
+
+            <li class="l-section section--is-active">
+              <div class="wrapper">
+                <div><span class="dot"></span></div>
+                <div><span class="dot"></span></div>
+                <div><span class="dot"></span></div>
+                <div><span class="dot"></span></div>
+                <div><span class="dot"></span></div>
+                <div><span class="dot"></span></div>
+                <div><span class="dot"></span></div>
+                <div><span class="dot"></span></div>
+                <div><span class="dot"></span></div>
+                <div><span class="dot"></span></div>
+                <div><span class="dot"></span></div>
+                <div><span class="dot"></span></div>
+                <div><span class="dot"></span></div>
+                <div><span class="dot"></span></div>
+                <div><span class="dot"></span></div>
+              </div>
+              <!-- <div class="worky">
+                <div class="work">
+                  <br><br><br>
+                  <h2> Try our <span
+                    style="color: rgb(127, 0, 245);text-shadow: 0 0px 50px rgba(54, 0, 90, 0.767);">Services</span></h2>
+                  <div class="try" id="try">
+
+                    <div class="contaner" id="TAWJIH">
+                      <h1 style="text-align: center;">TAWJIHI<span>AI</span>🧭</h1>
+                    </div>
+                    <div class="contaner" id="ROAD">
+                      <h1 style="text-align: center;">ROAD<span>MAPS</span>🚀</h1>
+                    </div>
+                    
+                    <!--<div class="contaner">
+                      <h3 style="text-align: center;">Unlock the future of personal growth with <span style="color: rgb(127, 0, 245);text-shadow: 0 0px 50px rgba(54, 0, 90, 0.767);">My Way</span>, the AI-Powered Goal Roadmapper. Say farewell to vague goals and welcome a customized journey to success. Let's explore how this innovative solution transforms the way you achieve your aspirations.</h3>
+                    </div>
+
+                  </div>
+
+                  <div class="try" id="try">
+
+                    <div class="contaner" id="TAWJIH">
+                      <h1 style="text-align: center;">CHOAABA<span>AI</span>🎓</h1>
+                    </div>
+                    <div class="contaner" id="ROAD">
+                      <h1 style="text-align: center;">KHADMA<span>AI</span>🤝</h1>
+                    </div>
+                    
+                    <!--<div class="contaner">
+                      <h3 style="text-align: center;">Unlock the future of personal growth with <span style="color: rgb(127, 0, 245);text-shadow: 0 0px 50px rgba(54, 0, 90, 0.767);">My Way</span>, the AI-Powered Goal Roadmapper. Say farewell to vague goals and welcome a customized journey to success. Let's explore how this innovative solution transforms the way you achieve your aspirations.</h3>
+                    </div>
+
+                  </div>
+
+
+
+
+                </div>
+              </div> -->
+
+<style>
+  
+  .work {
+  text-align: center;
+  
+}
+
+.try {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+
+  text-align: center;
+}
+
+.contaner {
+  font-size: 80%;
+  flex: 1;
+  width: 70%;
+  margin: 10px;
+  padding: 40px;
+  background-color: rgba(55, 55, 55, 1);
+  color: #ffffff;
+  box-shadow: 0 0px 50px rgba(67, 3, 87, 0.658);
+  border-radius: 5px;
+  transition: font-size 0.3s, color 0.3s;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  text-align: center;
+}
+
+.contaner>h1>span {
+  color: #7f00f5;
+  text-shadow: 0 0px 50px rgba(54, 0, 90, 0.767);
+}
+
+.contaner:hover {
+  font-size: 85%;
+  color: rgb(255, 255, 255);
+  background-color: #424242;
+}
+
+@media (max-width: 768px) {
+
+  .work {
+    text-align: center;
+    left: 12%;
+  }
+  .try {
+    
+    grid-template-columns: 1fr;
+    gap: 5px;
+  }
+
+  .contaner {
+    flex: 1;
+    max-width: none;
+    margin: 0;
+    padding: 5px; /* Adjust padding for smaller text */
+  }
+
+  .work> h2  {
+    margin-left: -90px;
+  }
+}
+
+
+
+  
+  </style>
+
+              <div class="worky">
+                <div class="work">
+                  <br><br><br>
+                  <h2 style=" margin-top: -60px; margin-bottom: -20px;"> Try our <span style="color: rgb(127, 0, 245);text-shadow: 0 0px 50px rgba(54, 0, 90, 0.767);">Services</span></h2>
+              <br><br><br>
+                  <div class="try" id="try">
+                    <div class="contaner" id="TAWJIH">
+                      <h1 style="text-align: center;">TAWJIHI<span>AI</span>🎓</h1>
+                    </div>
+                  <div class="contaner" id="ROAD">
+                    <h1 style="text-align: center;">TRIKI<span>AI</span>🚀</h1>
+                  </div>
+                    <div class="contaner" id="KHADMA">
+                      <h1 style="text-align: center;">KHADMA<span>AI</span>🤝</h1>
+                    </div>
+                    <div class="contaner" id="MINHA">
+                      <h1 style="text-align: center;">MINAH<span>AI</span>🌟</h1>
+                    </div>
+                  </div>
+                </div>
+              </div>
+              
+            </li>
+            
+          </ul>
+        </div>
+      </div>
+    </div>
+
+  </div>
+
+
+  <script>
+    document.getElementById("back-button").addEventListener("click", () => {
+            history.back();
+        });
+    document.getElementById("TAWJIH").addEventListener("click", function () {
+      window.location.href = "form.html";
+    });
+    document.getElementById("ROAD").addEventListener("click", function () {
+      window.location.href = "rdm.html";
+    });
+    document.getElementById("KHADMA").addEventListener("click", function () {
+      window.location.href = "formK.html";
+    });
+    document.getElementById("MINHA").addEventListener("click", function () {
+      window.location.href = "formmin.html";
+    });
+    
+  </script>
+
+  <script src="https://ajax.googleapis.com/ajax/libs/jquery/2.2.4/jquery.min.js"></script>
+  <script>window.jQuery || document.write('<script src="assets/js/vendor/jquery-2.2.4.min.js"><\/script>')</script>
+  <script src="assets/js/functions-min.js"></script>
+  <script src="https://smtpjs.com/v3/smtp.js">
+  </script>
+
+  
+</body>
+
+</html>

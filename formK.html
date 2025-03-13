@@ -1,0 +1,290 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <title>Orienta</title>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="description" content="">
+  <meta name="keywords" content="">
+  <link rel="shortcut icon" type="x-icon" href="assets\img\logo-blanc-1024x428[1].webp">
+  <link rel="stylesheet" href="assets/css/main.css">
+</head>
+
+
+
+
+<style>
+
+  
+  @media (max-width: 524px) {
+   
+
+  .header--logo {
+    margin-bottom: -50px;
+  }
+
+  
+}
+
+</style>
+
+
+<link href="https://fonts.googleapis.com/css?family=Merriweather&display=swap" rel="stylesheet">
+<link href="https://cdn.jsdelivr.net/npm/tailwindcss@2.2.3/dist/tailwind.min.css" rel="stylesheet">
+<link rel="stylesheet" href="https://npmcdn.com/pdfjs-dist@2.9.359/web/pdf_viewer.css">
+<style>
+  body {
+    font-family: "Merriweather", serif;
+  }
+  .hidden {
+    display: none;
+  }
+  h1 {
+    text-align: center;
+  }
+</style>
+
+<link href="https://fonts.googleapis.com/css?family=Merriweather&display=swap" rel="stylesheet">
+<link href="https://cdn.jsdelivr.net/npm/tailwindcss@2.2.3/dist/tailwind.min.css" rel="stylesheet">
+<link rel="stylesheet" href="https://npmcdn.com/pdfjs-dist@2.9.359/web/pdf_viewer.css">
+<style>
+  body {
+    font-family: "Merriweather", serif;
+    background-color: #000000;
+    color: #FFFFFF;
+  }
+  .hidden {
+    display: none;
+  }
+  h1 {
+    text-align: center;
+  }
+  .bg-dark {
+    background-color: #1a1a1a;
+  }
+  .text-purple {
+    color: #9b59b6;
+  }
+  .border-gray-800 {
+    border-color: #2d2d2d;
+  }
+  .bg-purple-600 {
+    background-color: #6c5ce7;
+  }
+  .bg-purple-800 {
+    background-color: #5b49a8;
+  }
+</style>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/pdf.js/2.9.359/pdf.min.js"></script>
+<script src="https://npmcdn.com/pdfjs-dist@2.9.359/web/pdf_viewer.js"></script>
+
+
+</head>
+
+<body class="bg-black-100">
+  <div class="device-notification">
+    <a class="device-notification--logo" href="index.html">
+      <img src="assets/img/logo-blanc-1024x428[1].webp" alt="RoadMapper" style="width: 67px; height: 58px;">
+      <p>Orienta</p>   </a>
+    <p class="device-notification--message">Orienta have so much to offer that we must request you orient your device to
+      portrait or find a larger screen. You won't be disappointed.</p>
+  </div>
+
+  <div class="perspective effect-rotate-left">
+    <button id="back-button">
+      <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="white" width="24px" height="24px">
+        <path d="M0 0h24v24H0z" fill="none" />
+        <path d="M19 12l-7 7-1.41-1.41L16.17 13H4v-2h12.17l-4.58-4.59L12 5l7 7z" />
+      </svg>
+    </button>
+    <div class="container">
+      <div class="outer-nav--return"></div>
+      <div id="viewport" class="l-viewport">
+        <div class="l-wrapper">
+          <header class="header">
+            <br> <br> <br>
+            <a class="header--logo" href="index.html">
+              <img src="assets/img/logo-blanc-1024x428[1].webp" alt="RoadMapper" style="width: 67px; height: 58px;">
+              <p>Orienta </p>
+            </a>
+
+          </header>
+          
+
+          
+            <div class="container mx-auto py-10 px-4">
+              <h1 class="text-4xl font-bold mb-5 text-purple"><span style="color: #FFFFFF;">Khadma</span> Ai</h1>
+              <div class="flex flex-wrap -mx-4">
+                <div class="w-full lg:w-1/2 px-4">
+                  <form id="resumeForm" class="bg-dark p-6 rounded shadow-lg">
+                    <div id="resumeTextContainer" class="mb-4 hidden">
+                      <label for="resume" class="block text-sm font-medium">CV:</label>
+                      <textarea id="resume" rows="10" class="w-full p-2 mt-1 border border-gray-800 rounded bg-dark text-white"></textarea>
+                    </div>
+                    <div class="mb-4">
+                      <label for="uploadResume" class="block text-sm font-medium">Upload CV (PDF):</label>
+                      <input type="file" id="uploadResume" class="mt-1 bg-dark text-white" accept="application/pdf">
+                    </div>
+                    <button type="submit" id="analyzeButton" class="bg-purple-600 text-white px-4 py-2 rounded hover:bg-purple-800 hidden">Analyze!</button>
+                  </form>
+                  <section id="output" class="bg-dark p-6 mt-8 mb-10 rounded shadow-lg text-white max-h-96 overflow-y-auto"></section>
+                </div>
+                <div class="w-full lg:w-1/2 px-4">
+                  <div id="pdfPreview" class="bg-dark p-6 rounded shadow-lg h-[500px] overflow-auto"></div>
+                  <div class="flex justify-center mt-4">
+                    <button id="previousButton" class="bg-purple-600 text-white px-4 py-2 rounded hover:bg-purple-800 mr-4 hidden">Previous</button>
+                    <button id="nextButton" class="bg-purple-600 text-white px-4 py-2 rounded hover:bg-purple-800 hidden">Next</button>
+                  </div>
+                  <p id="pageInfo" class="text-center mt-2 hidden"></p>
+                </div>
+              </div>
+            </div>
+          
+            <script>
+
+document.getElementById("back-button").addEventListener("click", () => {
+      history.back();
+    });
+
+
+    
+              let pdf;
+              let currentPage = 1;
+          
+              function updatePageInfo() {
+                const pageInfo = document.getElementById("pageInfo");
+                pageInfo.innerText = `${currentPage} / ${pdf.numPages}`;
+                pageInfo.classList.toggle("hidden", pdf.numPages === 1);
+              }
+          
+              async function updatePdfView() {
+                document.getElementById("previousButton").disabled = currentPage <= 1;
+                document.getElementById("nextButton").disabled = currentPage >= pdf.numPages;
+          
+                updatePageInfo();
+          
+                const page = await pdf.getPage(currentPage);
+                const canvas = document.createElement("canvas");
+                const context = canvas.getContext("2d");
+                const viewport = page.getViewport({scale: 1.0});
+                canvas.height = viewport.height;
+                canvas.width = viewport.width;
+                const renderContext = {
+                  canvasContext: context,
+                  viewport: viewport,
+                };
+                
+                await page.render(renderContext);
+                const pdfPreview = document.getElementById("pdfPreview");
+                pdfPreview.innerHTML = '';
+                pdfPreview.appendChild(canvas);
+              }
+          
+              document.getElementById("previousButton").addEventListener("click", () => {
+                currentPage--;
+                updatePdfView();
+              });
+          
+              document.getElementById("nextButton").addEventListener("click", () => {
+                currentPage++;
+                updatePdfView();
+              });
+          
+              document.getElementById("resumeForm").addEventListener("submit", (event) => {
+                event.preventDefault();
+                const promptTemplate = "Analyze the given resume text (CV) and return the Best 5 job feild and specialities for him and the exact position that suit him and explaine why  and also some opene job opportunities in famous companies for each job in his country, the output should be well formated, data: {Resume text}";
+                const resumeText = document.getElementById("resume").value;
+          
+                if (!resumeText.trim()) {
+                  alert('No text was extracted from your PDF. Try with a different file.');
+                  return;
+                }
+                
+                const substitutedPrompt = promptTemplate.replace("{Resume text}", resumeText);
+                
+                console.log(substitutedPrompt);
+          
+                const output = document.getElementById("output");
+                output.innerText = "";
+          
+                const ws = new WebSocket(`wss://backend.buildpicoapps.com/ask_ai_streaming_v2`);
+          
+                ws.addEventListener("open", () => {
+                    ws.send(
+                      JSON.stringify({
+                        appId: "without-family",
+                        prompt: substitutedPrompt
+                      })
+                    );
+                  });
+          
+                ws.addEventListener("message", (event) => {
+                  output.innerText = `${output.innerText}${event.data}`;
+                });
+          
+                ws.addEventListener("close", (event) => {
+                  console.log("Connection closed", event.code, event.reason);
+                  if (event.code != 1000) {
+                    alert("Oops, we ran into an error. Refresh the page and try again.");
+                  }
+                });
+          
+                ws.addEventListener("error", (error) => {
+                  console.log('WebSocket error', error);
+                  alert("Oops, we ran into an error. Refresh the page and try again.");
+                });
+              });
+          
+              document.getElementById("uploadResume").addEventListener("change", async (event) => {
+                const file = event.target.files[0];
+                if (!file) return;
+          
+                try {
+                  const pdfBuffer = await file.arrayBuffer();        
+                  pdf = await pdfjsLib.getDocument({data: pdfBuffer}).promise;
+                  let extractedText = '';
+          
+                  for (let pageNumber = 1; pageNumber <= pdf.numPages; pageNumber++) {
+                    const page = await pdf.getPage(pageNumber);
+                    const textContent = await page.getTextContent();
+                    const pageText = textContent.items.map(item => item.str).join(' ');
+          
+                    extractedText += `${pageText} `;
+                  }
+          
+                  document.getElementById("resume").value = extractedText.trim();
+          
+                  // Hide file input and textarea
+                  document.getElementById("resumeTextContainer").classList.add("hidden");
+                  document.getElementById("uploadResume").classList.add("hidden");
+                  document.getElementById("analyzeButton").classList.remove("hidden");
+          
+                  // Display the PDF preview
+                  currentPage = 1;
+                  await updatePdfView();
+          
+                  // Show the previous/next buttons and page info, if resume has more than 1 page
+                  if (pdf.numPages > 1) {
+                    document.getElementById("previousButton").classList.remove("hidden");
+                    document.getElementById("nextButton").classList.remove("hidden");
+                  } else {
+                    document.getElementById("previousButton").classList.add("hidden");
+                    document.getElementById("nextButton").classList.add("hidden");
+                  }
+          
+                } catch (error) {
+                  console.error('Error extracting text from PDF', error);
+                  alert("Oops, we couldn't extract text from this PDF. Please try another file.");
+                }
+              });
+            </script>
+          </body>
+          
+          
+          </html>
+
+
+
+
